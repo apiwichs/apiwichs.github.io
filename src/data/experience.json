@@ -1,0 +1,39 @@
+[
+  {
+    "company": "Analog Devices Inc.",
+    "role": "Test Engineer Intern — Quality & Optimization Excellence",
+    "date": "Summer 2026",
+    "location": "Internship",
+    "featured": true,
+    "incoming": true,
+    "bullets": [
+      "Joining ADI's Quality and Optimization Excellence team to work on test engineering for analog and mixed-signal ICs — one of the world's leading semiconductor companies for precision measurement and signal processing."
+    ]
+  },
+  {
+    "company": "UofT Formula SAE Racing",
+    "role": "Electronics Team Member — PCB Design",
+    "date": "Sept. 2025 – Present",
+    "location": "Toronto, ON",
+    "featured": false,
+    "incoming": false,
+    "bullets": [
+      "Designed a PCB-based LED driver circuit in Altium Designer — full end-to-end flow: schematic capture, PCB layout, and design verification.",
+      "Performed electrical design calculations for current limiting and component derating to ensure reliable operation within device specifications.",
+      "Built custom schematic symbols and PCB footprints; integrated vendor STEP models to validate mechanical fit and board-level assembly.",
+      "Produced manufacturing-ready deliverables: Gerber files, pick-and-place outputs, and structured BOM for fabrication and assembly review."
+    ]
+  },
+  {
+    "company": "Provectus Networks",
+    "role": "IT Engineering Intern",
+    "date": "Nov. 2022 – Mar. 2023",
+    "location": "Vancouver, BC",
+    "featured": false,
+    "incoming": false,
+    "bullets": [
+      "Upgraded 20+ client workstations by replacing DDR3 RAM and hardware components, reducing boot and load times by up to 35%.",
+      "Diagnosed and resolved hardware failures, driver conflicts, and OS errors across diverse hardware setups."
+    ]
+  }
+]

@@ -1,0 +1,45 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Apiwich Sumeksri — Embedded Systems | UofT ECE',
+  description = 'UofT Computer Engineering student specializing in embedded systems, FPGA design, PCB layout, and firmware. Incoming Test Engineer Intern at Analog Devices.'
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/global.css" />
+</head>
+<body>
+  <slot name="sidebar" />
+  <div class="main-content">
+    <slot />
+  </div>
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = Number((entry.target as HTMLElement).dataset.delay ?? 0);
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach((el, i) => {
+      if (!(el as HTMLElement).dataset.delay)
+        (el as HTMLElement).dataset.delay = String(i * 80);
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import experience from '../data/experience.json';
+import projects from '../data/projects.json';
+
+const langSkills = [
+  { name: 'C',        icon: '/assets/skills/c-logo.png' },
+  { name: 'C++',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'Python',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'Verilog',  icon: '/assets/skills/verilog-logo.png' },
+  { name: 'Java',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { name: 'Assembly', icon: '/assets/skills/assembly-logo.png' },
+];
+
+const toolSkills = [
+  { name: 'Altium Designer', icon: '/assets/skills/altium-designer-logo.png' },
+  { name: 'Git',             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+  { name: 'ModelSim',        icon: null, letter: 'SIM' },
+  { name: 'Quartus',         icon: null, letter: 'QUS' },
+];
+
+const protoSkills = [
+  { name: 'I²C',  icon: null, letter: 'I²C'  },
+  { name: 'UART', icon: null, letter: 'UART' },
+  { name: 'SPI',  icon: null, letter: 'SPI'  },
+];
+---
+<Layout title="Apiwich Sumeksri — Embedded Systems | UofT ECE">
+  <Sidebar slot="sidebar" />
+
+  <!-- ══════════════════════════════ HERO ══════════════════════════════ -->
+  <section id="hero" class="hero-section">
+    <div class="hero-inner">
+      <div class="hero-badge fade-up">
+        <span class="badge-dot"></span>
+        Incoming Test Engineer Intern · Analog Devices Inc. · Summer 2026
+      </div>
+      <h1 class="hero-headline fade-up">Building hardware<br/>from the ground up.</h1>
+      <p class="hero-bio fade-up">
+        FPGA RTL in Verilog, bare-metal firmware in C, and multi-layer PCB layouts
+        in Altium Designer. 3rd-year Electrical & Computer Engineering at UofT · 2× Dean's Honour List.
+      </p>
+      <div class="hero-links fade-up">
+        <a href="#projects" class="hero-btn-fill">View Projects</a>
+        <a href="https://github.com/apiwichs" target="_blank" class="hero-link">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/apiwichsumeksri" target="_blank" class="hero-link">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="#contact" class="hero-link">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contact
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ ABOUT ══════════════════════════════ -->
+  <section id="about" class="page-section about-section">
+    <div class="section-banner about-banner">ABOUT</div>
+    <div class="section-inner">
+      <div class="about-text fade-up">
+        <p>I'm an Electrical & Computer Engineering student at the University of Toronto, on the 2× Dean's Honour List, with a focus on the hardware side of computing — RTL design, embedded firmware, and PCB layout.</p>
+        <p>I'm drawn to the intersection of hardware and software: writing firmware that runs bare-metal on a microcontroller, routing the PCB that carries it, or designing the Verilog that describes the logic underneath it all.</p>
+        <p>This summer I'm joining <strong>Analog Devices Inc.</strong> as a Test Engineer Intern — working with analog and mixed-signal ICs on the Quality and Optimization Excellence team.</p>
+        <p>Outside coursework: electronics team at UofT Formula SAE, and a Minor in Artificial Intelligence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ PROJECTS ══════════════════════════════ -->
+  <section id="projects" class="page-section projects-section">
+    <div class="section-banner projects-banner">PROJECTS</div>
+    <div class="section-inner">
+      <div class="projects-grid">
+        {projects.map((p, i) => (
+          <article class="proj-card fade-up" data-delay={String(i * 120)}>
+            <div class="card-carousel" data-index="0">
+              {p.images.map((img, ii) => (
+                <img
+                  src={img}
+                  alt={`${p.title} image ${ii + 1}`}
+                  class={`carousel-img ${ii === 0 ? 'active' : ''}`}
+                  onerror="this.style.display='none'"
+                />
+              ))}
+              {p.images.length > 1 && (
+                <Fragment>
+                  <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+                  <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+                  <div class="carousel-dots">
+                    {p.images.map((_, di) => (
+                      <span class={`carousel-dot ${di === 0 ? 'active' : ''}`}></span>
+                    ))}
+                  </div>
+                </Fragment>
+              )}
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">{p.title}</h3>
+              <p class="card-desc">{p.desc}</p>
+              <div class="card-tags">
+                {p.tags.slice(0, 3).map(t => (
+                  <span class="ctag">{t.label}</span>
+                ))}
+              </div>
+              <a href={p.github} target="_blank" rel="noopener" class="github-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ SKILLS ══════════════════════════════ -->
+  <section id="skills" class="page-section skills-section">
+    <div class="section-banner skills-banner">SKILLS</div>
+    <div class="section-inner">
+      <div class="skill-boxes">
+
+        <div class="skill-box fade-up">
+          <h3 class="skill-box-title">Languages</h3>
+          <div class="skill-box-divider"></div>
+          <div class="sg-icons">
+            {langSkills.map(s => (
+              <div class="skill-chip">
+                <img src={s.icon} alt={s.name} class="skill-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="skill-letter" style="display:none">{s.name}</div>
+                <span class="skill-chip-label">{s.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="skill-box fade-up" data-delay="80">
+          <h3 class="skill-box-title">Software & Tools</h3>
+          <div class="skill-box-divider"></div>
+          <div class="sg-icons">
+            {toolSkills.map(s => (
+              <div class="skill-chip">
+                {s.icon
+                  ? <img src={s.icon} alt={s.name} class="skill-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                  : null}
+                <div class="skill-letter" style={s.icon ? 'display:none' : ''}>{s.letter}</div>
+                <span class="skill-chip-label">{s.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="skill-box fade-up" data-delay="160">
+          <h3 class="skill-box-title">Protocols</h3>
+          <div class="skill-box-divider"></div>
+          <div class="sg-icons">
+            {protoSkills.map(s => (
+              <div class="skill-chip">
+                <div class="skill-letter">{s.letter}</div>
+                <span class="skill-chip-label">{s.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ EDUCATION ══════════════════════════════ -->
+  <section id="education" class="page-section education-section">
+    <div class="section-banner education-banner">EDUCATION</div>
+    <div class="section-inner">
+      <div class="edu-card fade-up">
+        <div class="edu-inst">University of Toronto</div>
+        <div class="edu-deg">BASc Electrical & Computer Engineering · 2024 – 2028 (Expected)</div>
+        <div class="edu-deg">Minor in Artificial Intelligence (Expected)</div>
+        <div class="edu-honour">3× Dean's Honour List</div>
+        <div class="edu-courses" style="margin-top:1rem"><span class="course-label">Completed —</span> Digital Systems · Computer Organization · Software Design</div>
+        <div class="edu-courses" style="margin-top:0.35rem"><span class="course-label">Upcoming —</span> Microprocessors & Embedded Systems · Electronics · Signals & Systems</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ EXPERIENCE ══════════════════════════════ -->
+  <section id="experience" class="page-section experience-section">
+    <div class="section-banner experience-banner">EXPERIENCE</div>
+    <div class="section-inner">
+      <div class="exp-list">
+        {experience.map((e, i) => (
+          <article class="exp-card fade-up" data-delay={String(i * 100)}>
+            <div class="exp-left">
+              <div class={`exp-co ${e.featured ? 'exp-co-adi' : ''}`}>{e.company}</div>
+              <div class="exp-date">{e.date}</div>
+              <div class="exp-loc">{e.location}</div>
+              {e.incoming && <span class="exp-pill">Incoming</span>}
+            </div>
+            <div class="exp-right">
+              <div class="exp-role">{e.role}</div>
+              <ul class="exp-bullets">
+                {e.bullets.map(b => (
+                  <li set:html={b.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ CONTACT ══════════════════════════════ -->
+  <section id="contact" class="page-section contact-section">
+    <div class="section-banner contact-banner">CONTACT</div>
+    <div class="section-inner">
+      <p class="contact-sub fade-up">
+        Open to PEY co-op and internship roles in embedded systems, firmware,
+        FPGA/RTL design, IC test, and hardware verification — 2026–2027.
+      </p>
+      <div class="avail-badge fade-up">
+        <span class="avail-dot"></span>
+        Available for PEY Co-op · September 2026 – August 2027
+      </div>
+      <div class="c-links fade-up">
+        <a href="mailto:apiwich.sumeksri@mail.utoronto.ca" class="c-link">
+          <span class="c-lbl">Email</span>
+          <span class="c-val">apiwich.sumeksri@mail.utoronto.ca</span>
+        </a>
+        <a href="https://linkedin.com/in/apiwichsumeksri" target="_blank" class="c-link">
+          <span class="c-lbl">LinkedIn</span>
+          <span class="c-val">linkedin.com/in/apiwichsumeksri</span>
+        </a>
+        <a href="https://github.com/apiwichs" target="_blank" class="c-link">
+          <span class="c-lbl">GitHub</span>
+          <span class="c-val">github.com/apiwichs</span>
+        </a>
+        <a href="tel:+14169303290" class="c-link">
+          <span class="c-lbl">Phone</span>
+          <span class="c-val">(416) 930-3290</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+/* ══ SHARED ══ */
+.page-section { position: relative; }
+.section-inner { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem 5rem; }
+
+/* Section banner — full-width colored header bar */
+.section-banner {
+  width: 100%;
+  padding: 1.25rem 2rem;
+  font-family: var(--sans);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+.about-banner      { background: #3a7a5a; }
+.skills-banner     { background: #2e7a72; }
+.experience-banner { background: #2a6a7a; }
+.projects-banner   { background: #265a7a; }
+.contact-banner    { background: #1e4a6a; }
+
+/* ══ HERO ══ */
+.hero-section {
+  min-height: 100vh; display: flex; align-items: center;
+  background: linear-gradient(135deg, #e8f0f4 0%, #ddeaee 50%, #d4e6e8 100%);
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; padding: 6rem 2rem 5rem; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+  color: #2a7a5a; background: rgba(42,122,90,0.1);
+  border: 1px solid rgba(42,122,90,0.25);
+  padding: 0.38rem 0.85rem; border-radius: 20px; margin-bottom: 2rem;
+}
+.badge-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #2a7a5a; flex-shrink: 0;
+  animation: pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 2px rgba(42,122,90,0.2)} 50%{box-shadow:0 0 0 7px rgba(42,122,90,0.05)} }
+.hero-headline {
+  font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; color: #1a2e2a;
+  line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 1.25rem;
+}
+.hero-bio {
+  font-size: 1rem; color: #4a6a60; font-weight: 300;
+  line-height: 1.85; max-width: 580px; margin-bottom: 2.25rem;
+}
+.hero-links { display: flex; gap: 0.85rem; flex-wrap: wrap; align-items: center; }
+.hero-btn-fill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 600;
+  color: #fff; background: #2a7a5a; text-decoration: none;
+  padding: 0.65rem 1.3rem; border-radius: 6px;
+  border: 1.5px solid #2a7a5a; transition: all 0.18s;
+}
+.hero-btn-fill:hover { background: #1a6a4a; border-color: #1a6a4a; }
+.hero-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 500;
+  color: #2a5a50; text-decoration: none;
+  border: 1.5px solid rgba(42,90,80,0.3); padding: 0.63rem 1.1rem; border-radius: 6px;
+  background: rgba(255,255,255,0.5); transition: all 0.18s;
+}
+.hero-link:hover { background: rgba(255,255,255,0.85); border-color: #2a7a5a; color: #1a3a30; }
+
+/* ══ ABOUT ══ */
+.about-section { background: #f4f8f6; }
+.about-text { max-width: 720px; display: flex; flex-direction: column; gap: 1.1rem; }
+.about-text p { font-size: 1.2rem; color: #3a5a54; font-weight: 300; line-height: 1.95; }
+.about-text p :global(strong) { color: #1a6a48; font-weight: 600; }
+
+/* ══ SKILLS ══ */
+.skills-section { background: #f0f6f4; }
+.skills-section .section-inner { padding-left: 0; }
+.skill-boxes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.skill-box {
+  background: #fff; border-radius: 10px;
+  border: 1px solid rgba(160,200,195,0.5);
+  padding: 1.75rem 1.75rem 2rem;
+  box-shadow: 0 2px 12px rgba(60,100,90,0.06);
+}
+.skill-box-title { font-size: 1.15rem; font-weight: 600; color: #1a2e2a; margin-bottom: 0.75rem; }
+.skill-box-divider { height: 1px; background: rgba(160,200,195,0.5); margin-bottom: 1.5rem; }
+.sg-icons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+}
+.skill-chip {
+  display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  padding: 1.1rem 0.85rem;
+  background: #f8fbfa; border: 1px solid rgba(160,200,195,0.4);
+  border-radius: 10px; transition: all 0.18s; cursor: default;
+}
+.skill-chip:hover { background: #fff; border-color: rgba(42,122,90,0.3); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(42,90,80,0.1); }
+.skill-icon { width: 58px; height: 58px; object-fit: contain; display: block; }
+.skill-letter {
+  width: 58px; height: 58px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.82rem; font-weight: 700;
+  color: #2a7a70; background: rgba(42,122,112,0.1);
+  border-radius: 8px; text-align: center; line-height: 1.3; padding: 0.25rem;
+}
+.skill-chip-label { font-size: 0.82rem; font-weight: 500; color: #2a4a44; text-align: center; line-height: 1.2; }
+
+/* ══ EXPERIENCE ══ */
+.experience-section { background: #edf4f2; }
+.exp-list { display: flex; flex-direction: column; }
+.exp-card { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; padding: 2.25rem 0; border-bottom: 1px solid rgba(150,190,185,0.35); }
+.exp-card:first-child { padding-top: 0; }
+.exp-card:last-child { border-bottom: none; }
+.exp-co { font-size: 1.4rem; font-weight: 700; color: #1a2e2a; margin-bottom: 0.3rem; line-height: 1.3; }
+.exp-co-adi { color: #1a6a48; }
+.exp-date { font-family: var(--mono); font-size: 0.78rem; color: #7a9a94; margin-bottom: 0.1rem; }
+.exp-loc  { font-family: var(--mono); font-size: 0.76rem; color: #7a9a94; margin-bottom: 0.5rem; }
+.exp-pill { display: inline-block; font-family: var(--mono); font-size: 0.68rem; font-weight: 500; color: #1a6a48; background: rgba(26,106,72,0.1); border: 1px solid rgba(26,106,72,0.25); padding: 0.18rem 0.55rem; border-radius: 2px; letter-spacing: 0.08em; }
+.exp-role { font-family: var(--sans); font-size: 1.05rem; font-weight: 500; color: #3a5a54; margin-bottom: 0.85rem; line-height: 1.4; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.exp-bullets li { font-size: 1.05rem; color: #3a5a54; font-weight: 300; padding-left: 1.1rem; position: relative; line-height: 1.75; }
+.exp-bullets li::before { content: '—'; position: absolute; left: 0; color: #4a9a7a; font-size: 0.75rem; top: 0.25rem; }
+.exp-bullets li :global(strong) { color: #1a2e2a; font-weight: 600; }
+
+/* ══ PROJECTS ══ */
+.projects-section { background: #e8f2f4; }
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+.proj-card {
+  background: #fff; border-radius: 12px; overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 2px 16px rgba(60,100,110,0.08);
+  transition: transform 0.22s, box-shadow 0.22s;
+  text-align: center;
+}
+.proj-card:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(60,100,110,0.16); }
+/* Carousel */
+.card-carousel { position: relative; width: 100%; background: #e8f0f4; overflow: hidden; }
+.carousel-img {
+  width: 100%; height: 340px;
+  display: none; object-fit: contain;
+}
+.carousel-img.active { display: block; }
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.85); border: none; border-radius: 50%;
+  width: 38px; height: 38px; font-size: 1.4rem; line-height: 1;
+  color: #2a4a44; cursor: pointer; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.18s, transform 0.18s;
+}
+.carousel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
+.carousel-dots {
+  position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 5px;
+}
+.carousel-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(255,255,255,0.5); transition: background 0.2s;
+}
+.carousel-dot.active { background: #fff; }
+.card-body { padding: 1.75rem 1.75rem 2rem; display: flex; flex-direction: column; flex: 1; align-items: center; }
+.card-title { font-size: 1.1rem; font-weight: 700; color: #1a2e38; margin-bottom: 0.75rem; line-height: 1.3; }
+.card-desc { font-size: 0.9rem; color: #3a5a6a; font-weight: 300; line-height: 1.75; margin-bottom: 1.25rem; max-width: 400px; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; justify-content: center; margin-bottom: 1.25rem; }
+.ctag {
+  font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+  padding: 0.28rem 0.75rem; border-radius: 20px;
+  color: #2a5a54; background: #edf5f2;
+  border: 1px solid rgba(42,90,84,0.2);
+}
+.github-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+  font-family: var(--mono); font-size: 0.8rem; font-weight: 500; color: #2a4a5a;
+  border: 1.5px solid rgba(42,90,110,0.3); border-radius: 6px;
+  padding: 0.65rem 2rem; text-decoration: none;
+  background: #f4f8fa; transition: all 0.2s; width: 100%; max-width: 240px;
+}
+.github-btn:hover { border-color: #2a4a5a; color: #1a2e38; background: #e8f0f4; }
+
+/* ══ EDUCATION ══ */
+.education-section { background: #f0f8f4; }
+.education-banner { background: #1e5a6a; }
+.edu-card {
+  background: #fff; border: 1px solid rgba(150,190,185,0.4);
+  border-radius: 8px; padding: 2rem 2.25rem;
+  max-width: 720px;
+}
+.edu-inst { font-size: 1.3rem; font-weight: 700; color: #1a2e2a; margin-bottom: 0.4rem; }
+.edu-deg  { font-size: 1.05rem; color: #3a5a54; font-weight: 300; line-height: 1.5; margin-bottom: 0.2rem; }
+.edu-honour {
+  font-size: 1.05rem; font-weight: 600; color: #1a6a48;
+  margin: 0.6rem 0 0;
+}
+.edu-courses { font-size: 1rem; color: #3a5a54; font-weight: 300; line-height: 1.7; }
+.course-label { font-family: var(--mono); font-size: 0.78rem; font-weight: 600; color: #7a9a94; letter-spacing: 0.06em; }
+
+/* ══ CONTACT ══ */
+.contact-section { background: #ffffff; border-top: 1px solid rgba(160,200,195,0.4); }
+.contact-section .section-inner { padding-bottom: 6rem; }
+.contact-sub { font-size: 1.1rem; color: #3a5a54; font-weight: 300; line-height: 1.85; max-width: 560px; margin-bottom: 1.5rem; }
+.avail-badge { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--mono); font-size: 0.82rem; font-weight: 500; color: #1a6a48; background: rgba(26,106,72,0.08); border: 1px solid rgba(26,106,72,0.25); padding: 0.38rem 0.85rem; border-radius: 2px; margin-bottom: 2rem; }
+.avail-dot { width: 7px; height: 7px; border-radius: 50%; background: #1a6a48; flex-shrink: 0; animation: pulse 2.2s ease-in-out infinite; }
+.c-links { display: flex; flex-direction: column; gap: 0.65rem; max-width: 560px; }
+.c-link { display: flex; align-items: center; gap: 1.25rem; text-decoration: none; border: 1px solid rgba(160,200,195,0.5); padding: 1rem 1.25rem; border-radius: 6px; background: #f8fbfa; transition: all 0.18s; }
+.c-link:hover { border-color: rgba(26,106,72,0.35); background: rgba(26,106,72,0.04); }
+.c-lbl { font-family: var(--mono); font-size: 0.75rem; color: #7a9a94; letter-spacing: 0.12em; text-transform: uppercase; min-width: 70px; }
+.c-val { font-family: var(--mono); font-size: 1rem; color: #1a2e2a; transition: color 0.18s; }
+.c-link:hover .c-val { color: #1a6a48; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 900px) {
+  .skill-boxes { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .exp-card { grid-template-columns: 1fr; gap: 0.5rem; }
+  .edu-card { grid-template-columns: 1fr; }
+  .edu-right { align-items: flex-start; }
+}
+</style>
+
+<script>
+document.querySelectorAll('.card-carousel').forEach(carousel => {
+  const imgs  = carousel.querySelectorAll('.carousel-img');
+  const dots  = carousel.querySelectorAll('.carousel-dot');
+  const prev  = carousel.querySelector('.carousel-prev');
+  const next  = carousel.querySelector('.carousel-next');
+
+  // Resize carousel height to the tallest image's natural height
+  function fitToTallest() {
+    let maxH = 0;
+    const carouselW = carousel.offsetWidth;
+    imgs.forEach(img => {
+      if (!img.naturalWidth) return;
+      const ratio = img.naturalHeight / img.naturalWidth;
+      const rendered = carouselW * ratio;
+      if (rendered > maxH) maxH = rendered;
+    });
+    if (maxH > 0) {
+      imgs.forEach(img => img.style.height = maxH + 'px');
+    }
+  }
+
+  let loaded = 0;
+  imgs.forEach(img => {
+    if (img.complete) { loaded++; if (loaded === imgs.length) fitToTallest(); }
+    else img.addEventListener('load', () => { loaded++; if (loaded === imgs.length) fitToTallest(); });
+  });
+  window.addEventListener('resize', fitToTallest);
+
+  if (!prev || !next) return;
+  let idx = 0;
+  function show(n) {
+    imgs[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = (n + imgs.length) % imgs.length;
+    imgs[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  }
+  prev.addEventListener('click', () => show(idx - 1));
+  next.addEventListener('click', () => show(idx + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+});
+</script>

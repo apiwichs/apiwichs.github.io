@@ -1,0 +1,42 @@
+[
+  {
+    "group": "HDL & Digital Design",
+    "color": "green",
+    "items": [
+      { "name": "Verilog",        "pips": 4 },
+      { "name": "FSM Design",     "pips": 4 },
+      { "name": "ModelSim",       "pips": 3 },
+      { "name": "Quartus (Intel)","pips": 3 }
+    ]
+  },
+  {
+    "group": "Embedded / Firmware",
+    "color": "green",
+    "items": [
+      { "name": "C / C++",               "pips": 4 },
+      { "name": "Microcontrollers",       "pips": 3 },
+      { "name": "Python",                 "pips": 4 },
+      { "name": "Assembly (x86 / ARM)",   "pips": 2 }
+    ]
+  },
+  {
+    "group": "PCB & Hardware Design",
+    "color": "amber",
+    "items": [
+      { "name": "Altium Designer",  "pips": 4 },
+      { "name": "Schematic Capture","pips": 4 },
+      { "name": "Gerber / BOM / P&P","pips": 4 },
+      { "name": "Oscilloscope",     "pips": 3 }
+    ]
+  },
+  {
+    "group": "Protocols & Interfaces",
+    "color": "pink",
+    "items": [
+      { "name": "I²C",          "pips": 0 },
+      { "name": "UART",         "pips": 0 },
+      { "name": "JTAG (debug)", "pips": 0 },
+      { "name": "VGA (timing)", "pips": 0 }
+    ]
+  }
+]

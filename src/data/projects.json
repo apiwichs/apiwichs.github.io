@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ece295-pcb",
+    "type": "PCB Design · Embedded Systems",
+    "title": "Custom Embedded Controller — ECE295",
+    "desc": "Full embedded system PCB designed from schematic to Gerbers in Altium Designer. Integrates a microcontroller with I²C, UART, and JTAG peripherals across a dual-layer board.",
+    "bullets": [
+      "Integrated SI5351 programmable clock generator and OLED display via I²C bus.",
+      "Exposed JTAG debug port and UART interface for firmware development and in-circuit testing.",
+      "Designed decoupling network (C1–C4), reset circuitry, and GPIO expansion headers.",
+      "Routed dual-layer board with copper fills, via stitching, and signal-integrity considerations for clock lines."
+    ],
+    "tags": [
+      { "label": "Altium Designer", "type": "hw" },
+      { "label": "PCB Layout",      "type": "hw" },
+      { "label": "I²C",            "type": "prt" }
+    ],
+    "images": [
+        "/assets/ece295-real-board.png",
+        "/assets/ece295-3d.png",
+        "/assets/ece295-pcb.png",
+        "/assets/ece295-schematic.png"
+    ],
+    "github": "https://github.com/apiwichs/ece295"
+  },
+  {
+    "id": "fpga-maze",
+    "type": "FPGA · Digital Design · RTL",
+    "title": "Wayout — FPGA First-Person Maze Game",
+    "desc": "Real-time pseudo-3D maze game on DE1-SoC, built in Verilog with a full VGA graphics pipeline and FSM-driven game logic — delivered over a 3-week sprint.",
+    "bullets": [
+      "Designed clock dividers, pixel-timing generators, and VGA sync logic for stable 60 Hz output.",
+      "FSM control logic with shift registers for player movement, wall detection, and state transitions.",
+      "Verified with ModelSim waveform analysis and cycle-accurate simulation for collision accuracy."
+    ],
+    "tags": [
+      { "label": "Verilog",    "type": "hw" },
+      { "label": "DE1-SoC",   "type": "hw" },
+      { "label": "ModelSim",  "type": "sw" }
+    ],
+    "images": [
+      "/assets/fpga-maze.png"
+    ],
+    "github": "https://github.com/apiwichs/fpga-maze"
+  },
+  {
+    "id": "cpu-sim",
+    "type": "Computer Architecture · Simulation",
+    "title": "5-Stage CPU Pipeline Simulator",
+    "desc": "Cycle-accurate software model of a 5-stage RISC pipeline with RAW hazard detection, stall injection, and per-cycle performance analytics.",
+    "bullets": [
+      "Modeled IF/ID/EX/MEM/WB stages with instruction retirement and pipeline drain behavior.",
+      "Implemented RAW data hazard detection and stall insertion logic to simulate pipeline bubbles.",
+      "Computed CPI, stall rate, and stage occupancy; visualized pipeline behavior with Matplotlib."
+    ],
+    "tags": [
+      { "label": "Python",             "type": "sw" },
+      { "label": "NumPy / Pandas",     "type": "sw" },
+      { "label": "Computer Architecture","type": "hw" }
+    ],
+    "images": [
+      "/assets/cpu-sim.png"
+    ],
+    "github": "https://github.com/apiwichs/cpu-pipeline-sim"
+  }
+]
