@@ -10,7 +10,7 @@ const langSkills = [
   { name: 'Python',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
   { name: 'Verilog',  icon: '/assets/skills/verilog-logo.png' },
   { name: 'Java',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
-  { name: 'Assembly', icon: '/assets/skills/assembly-logo.png' },
+  { name: 'Assembly (RISC-V)', icon: '/assets/skills/assembly-logo.png' },
 ];
 
 const toolSkills = [
@@ -80,13 +80,25 @@ const protoSkills = [
         {projects.map((p, i) => (
           <article class="proj-card fade-up" data-delay={String(i * 120)}>
             <div class="card-carousel" data-index="0">
-              {p.images.map((img, ii) => (
-                <img
-                  src={img}
-                  alt={`${p.title} image ${ii + 1}`}
-                  class={`carousel-img ${ii === 0 ? 'active' : ''}`}
-                  onerror="this.style.display='none'"
-                />
+              {p.images.map((src, ii) => (
+                src.endsWith('.mp4') ? (
+                  <video
+                    class={`carousel-img ${ii === 0 ? 'active' : ''}`}
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                  >
+                    <source src={src} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img
+                    src={src}
+                    alt={`${p.title} image ${ii + 1}`}
+                    class={`carousel-img ${ii === 0 ? 'active' : ''}`}
+                    onerror="this.style.display='none'"
+                  />
+                )
               ))}
               {p.images.length > 1 && (
                 <Fragment>
@@ -388,6 +400,7 @@ const protoSkills = [
   display: none; object-fit: contain;
 }
 .carousel-img.active { display: block; }
+video.carousel-img { object-fit: contain; background: #000; }
 .carousel-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
   background: rgba(255,255,255,0.85); border: none; border-radius: 50%;
@@ -500,11 +513,16 @@ document.querySelectorAll('.card-carousel').forEach(carousel => {
   if (!prev || !next) return;
   let idx = 0;
   function show(n) {
-    imgs[idx].classList.remove('active');
-    dots[idx].classList.remove('active');
+    const current = imgs[idx];
+    current.classList.remove('active');
+    if (dots[idx]) dots[idx].classList.remove('active');
+    if (current.tagName === 'VIDEO') current.pause();
+
     idx = (n + imgs.length) % imgs.length;
-    imgs[idx].classList.add('active');
-    dots[idx].classList.add('active');
+    const next = imgs[idx];
+    next.classList.add('active');
+    if (dots[idx]) dots[idx].classList.add('active');
+    if (next.tagName === 'VIDEO') next.play();
   }
   prev.addEventListener('click', () => show(idx - 1));
   next.addEventListener('click', () => show(idx + 1));

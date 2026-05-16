@@ -2,7 +2,7 @@
   {
     "id": "ece295-pcb",
     "type": "PCB Design · Embedded Systems",
-    "title": "Custom Embedded Controller — ECE295",
+    "title": "Embedded Radio Controller",
     "desc": "Full embedded system PCB designed from schematic to Gerbers in Altium Designer. Integrates a microcontroller with I²C, UART, and JTAG peripherals across a dual-layer board.",
     "bullets": [
       "Integrated SI5351 programmable clock generator and OLED display via I²C bus.",
@@ -12,7 +12,7 @@
     ],
     "tags": [
       { "label": "Altium Designer", "type": "hw" },
-      { "label": "PCB Layout",      "type": "hw" },
+      { "label": "UART",            "type": "prt" },
       { "label": "I²C",            "type": "prt" }
     ],
     "images": [
@@ -21,7 +21,7 @@
         "/assets/ece295-pcb.png",
         "/assets/ece295-schematic.png"
     ],
-    "github": "https://github.com/apiwichs/ece295"
+    "github": "https://github.com/apiwichs/embedded-radio-controller"
   },
   {
     "id": "fpga-maze",
@@ -39,9 +39,10 @@
       { "label": "ModelSim",  "type": "sw" }
     ],
     "images": [
-      "/assets/fpga-maze.png"
+    "/assets/game_recording.mp4",
+    "/assets/fpga-maze.png"
     ],
-    "github": "https://github.com/apiwichs/fpga-maze"
+    "github": "https://github.com/apiwichs/3DMazeGame"
   },
   {
     "id": "cpu-sim",
@@ -58,9 +59,12 @@
       { "label": "NumPy / Pandas",     "type": "sw" },
       { "label": "Computer Architecture","type": "hw" }
     ],
+    
     "images": [
-      "/assets/cpu-sim.png"
+    "/assets/pipeline_occupancy.png",
+    "/assets/stall_cycles.png"
     ],
+    
     "github": "https://github.com/apiwichs/cpu-pipeline-sim"
   }
 ]
