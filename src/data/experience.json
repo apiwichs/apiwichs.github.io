@@ -1,27 +1,28 @@
 [
   {
     "company": "Analog Devices Inc.",
-    "role": "Test Engineer Intern — Quality & Optimization Excellence",
-    "date": "Summer 2026",
+    "role": "Engineer Intern",
+    "date": "May 2026 – Present",
     "location": "Internship",
     "featured": true,
-    "incoming": true,
+    "incoming": false,
     "bullets": [
-      "Joining ADI's Quality and Optimization Excellence team to work on test engineering for analog and mixed-signal ICs — one of the world's leading semiconductor companies for precision measurement and signal processing."
+      "Working on the VI (Voltage-Current) Card — a precision analog hardware module used in source measurement and test systems. The core objective is extending its output voltage range from ±50 V to ±100 V without degrading measurement accuracy or introducing additional noise into the signal path.",
+      "Analyzing the existing analog circuit architecture to understand where current component ratings and topological choices impose the ±50 V ceiling, then identifying the modifications needed to safely double that range while preserving linearity.",
+      "Establishing accurate DC biasing conditions for the analog signal chain, ensuring every active component operates in its intended linear region across the full ±100 V swing — a critical step given how bias shifts can compound noise and distortion at extended voltage levels."
     ]
   },
   {
-    "company": "UofT Formula SAE Racing",
-    "role": "Electronics Team Member — PCB Design",
-    "date": "Sept. 2025 – Present",
+    "company": "Soundproofing of Elevator-Adjacent Rooms",
+    "role": "Project Manager — APS112, University of Toronto",
+    "date": "Jan. 2025 – Apr. 2025",
     "location": "Toronto, ON",
     "featured": false,
     "incoming": false,
     "bullets": [
-      "Designed a PCB-based LED driver circuit in Altium Designer — full end-to-end flow: schematic capture, PCB layout, and design verification.",
-      "Performed electrical design calculations for current limiting and component derating to ensure reliable operation within device specifications.",
-      "Built custom schematic symbols and PCB footprints; integrated vendor STEP models to validate mechanical fit and board-level assembly.",
-      "Produced manufacturing-ready deliverables: Gerber files, pick-and-place outputs, and structured BOM for fabrication and assembly review."
+      "Led a 5-member team on an acoustic noise-reduction design project, placing in the top 28 out of 187 teams at the faculty showcase.",
+      "Implemented structured Gantt-chart planning, improving workflow efficiency by 30% and delivering the final design 2 weeks ahead of schedule.",
+      "Developed a requirements document translating stakeholder needs into functional specifications, performance targets, and engineering constraints."
     ]
   },
   {
