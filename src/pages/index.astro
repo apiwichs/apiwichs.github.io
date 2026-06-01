@@ -25,6 +25,7 @@ const protoSkills = [
   { name: 'UART', icon: null, letter: 'UART' },
   { name: 'SPI',  icon: null, letter: 'SPI'  },
 ];
+
 ---
 <Layout title="Apiwich Sumeksri — Embedded Systems | UofT ECE">
   <Sidebar slot="sidebar" />
@@ -217,6 +218,34 @@ const protoSkills = [
     </div>
   </section>
 
+  <!-- ══════════════════════════ EDUCATION ══════════════════════════ -->
+  <section id="education" class="page-section education-section">
+    <div class="section-inner">
+      <div class="section-label-row">
+        <span class="section-lbl">Education</span>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="edu-card fade-up">
+        <div class="edu-left">
+          <div class="edu-inst">University of Toronto</div>
+          <div class="edu-date">2024 – 2028</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-deg">BASc Electrical & Computer Engineering</div>
+          <div class="edu-deg">Minor in Artificial Intelligence</div>
+          <div class="edu-honour">3× Dean's Honour List</div>
+          <div class="edu-courses" style="margin-top:1rem">
+            <span class="course-label">Completed —</span> Digital Systems · Computer Organization · Software Design
+          </div>
+          <div class="edu-courses" style="margin-top:0.35rem">
+            <span class="course-label">Upcoming —</span> Microprocessors & Embedded Systems · Electronics · Signals & Systems
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══════════════════════════ SKILLS ══════════════════════════ -->
   <section id="skills" class="page-section skills-section">
     <div class="section-inner">
@@ -274,34 +303,6 @@ const protoSkills = [
     </div>
   </section>
 
-  <!-- ══════════════════════════ EDUCATION ══════════════════════════ -->
-  <section id="education" class="page-section education-section">
-    <div class="section-inner">
-      <div class="section-label-row">
-        <span class="section-lbl">Education</span>
-        <div class="section-rule"></div>
-      </div>
-
-      <div class="edu-card fade-up">
-        <div class="edu-left">
-          <div class="edu-inst">University of Toronto</div>
-          <div class="edu-date">2024 – 2028</div>
-        </div>
-        <div class="edu-right">
-          <div class="edu-deg">BASc Electrical & Computer Engineering</div>
-          <div class="edu-deg">Minor in Artificial Intelligence</div>
-          <div class="edu-honour">3× Dean's Honour List</div>
-          <div class="edu-courses" style="margin-top:1rem">
-            <span class="course-label">Completed —</span> Digital Systems · Computer Organization · Software Design
-          </div>
-          <div class="edu-courses" style="margin-top:0.35rem">
-            <span class="course-label">Upcoming —</span> Microprocessors & Embedded Systems · Electronics · Signals & Systems
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ══════════════════════════ CONTACT ══════════════════════════ -->
   <section id="contact" class="page-section contact-section">
     <div class="section-inner">
@@ -310,31 +311,60 @@ const protoSkills = [
         <div class="section-rule"></div>
       </div>
 
-      <p class="contact-sub fade-up">
-        Open to PEY co-op and internship roles in embedded systems, firmware,
-        FPGA/RTL design, IC test, and hardware verification — 2026–2027.
-      </p>
-      <div class="avail-badge fade-up">
-        <span class="avail-dot"></span>
-        Available for PEY Co-op · September 2026 – August 2027
-      </div>
-      <div class="c-links fade-up">
-        <a href="mailto:apiwich.sumeksri@mail.utoronto.ca" class="c-link">
-          <span class="c-lbl">Email</span>
-          <span class="c-val">apiwich.sumeksri@mail.utoronto.ca</span>
-        </a>
-        <a href="https://linkedin.com/in/apiwichsumeksri" target="_blank" class="c-link">
-          <span class="c-lbl">LinkedIn</span>
-          <span class="c-val">linkedin.com/in/apiwichsumeksri</span>
-        </a>
-        <a href="https://github.com/apiwichs" target="_blank" class="c-link">
-          <span class="c-lbl">GitHub</span>
-          <span class="c-val">github.com/apiwichs</span>
-        </a>
-        <a href="tel:+14169303290" class="c-link">
-          <span class="c-lbl">Phone</span>
-          <span class="c-val">(416) 930-3290</span>
-        </a>
+      <div class="contact-layout fade-up">
+
+        <!-- Left: intro + availability -->
+        <div class="contact-left">
+          <h2 class="contact-heading">Let's work together.</h2>
+          <p class="contact-sub">
+            Actively seeking PEY co-op roles in embedded systems, firmware,
+            FPGA/RTL, and analog/mixed-signal hardware.
+          </p>
+          <div class="avail-badge">
+            Seeking PEY Co-op · Starting Summer/Fall 2027
+          </div>
+        </div>
+
+        <!-- Right: contact links -->
+        <div class="c-links">
+          <a href="mailto:apiwich.sumeksri@mail.utoronto.ca" class="c-link">
+            <div class="c-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="c-info">
+              <span class="c-lbl">Email</span>
+              <span class="c-val">apiwich.sumeksri@mail.utoronto.ca</span>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/apiwichsumeksri" target="_blank" class="c-link">
+            <div class="c-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div class="c-info">
+              <span class="c-lbl">LinkedIn</span>
+              <span class="c-val">linkedin.com/in/apiwichsumeksri</span>
+            </div>
+          </a>
+          <a href="https://github.com/apiwichs" target="_blank" class="c-link">
+            <div class="c-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div class="c-info">
+              <span class="c-lbl">GitHub</span>
+              <span class="c-val">github.com/apiwichs</span>
+            </div>
+          </a>
+          <a href="tel:+14169303290" class="c-link">
+            <div class="c-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.38-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.27 16.92z"/></svg>
+            </div>
+            <div class="c-info">
+              <span class="c-lbl">Phone</span>
+              <span class="c-val">(416) 930-3290</span>
+            </div>
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -350,21 +380,20 @@ const protoSkills = [
 .section-label-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-bottom: 2.75rem;
 }
 .section-lbl {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #16a34a;
+  font-family: var(--sans);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0a1409;
   white-space: nowrap;
 }
 .section-rule {
   flex: 1;
-  height: 1px;
+  height: 1.5px;
   background: #e2e8e3;
 }
 
@@ -627,7 +656,7 @@ const protoSkills = [
   margin-left: 0.2rem;
   opacity: 0.8;
 }
-.exp-date { font-family: var(--mono); font-size: 0.72rem; color: #8aa090; margin-bottom: 0.1rem; }
+.exp-date { font-family: var(--mono); font-size: 0.78rem; color: #2a5a3a; font-weight: 600; margin-bottom: 0.25rem; letter-spacing: 0.02em; }
 .exp-loc  { font-family: var(--mono); font-size: 0.7rem;  color: #8aa090; }
 
 /* Role — clearly subordinate but readable */
@@ -774,31 +803,62 @@ video.carousel-img { object-fit: contain; background: #0a0f0b; }
 .course-label { font-family: var(--mono); font-size: 0.65rem; font-weight: 600; color: #8aa090; letter-spacing: 0.08em; }
 
 /* ══ CONTACT ══ */
-.contact-section { background: #fff; border-top: 1px solid #e2e8e3; }
+.contact-section { background: #f7faf8; border-top: 1px solid #e2e8e3; }
 .contact-section .section-inner { padding-bottom: 6rem; }
-.contact-sub { font-size: 0.93rem; color: #4a6050; font-weight: 300; line-height: 1.9; max-width: 520px; margin-bottom: 1.25rem; }
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0a1409;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+.contact-sub {
+  font-size: 0.93rem;
+  color: #2a3d2e;
+  font-weight: 400;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
 .avail-badge {
   display: inline-flex; align-items: center; gap: 0.55rem;
-  font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-  color: #15803d; background: rgba(22,163,74,0.07);
-  border: 1px solid rgba(22,163,74,0.22); padding: 0.35rem 0.85rem;
-  border-radius: 3px; margin-bottom: 2rem;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+  color: #1a2e1e; background: #f0f4f1;
+  border: 1px solid #d4e0d6; padding: 0.38rem 0.9rem;
+  border-radius: 3px;
 }
-.avail-dot {
-  width: 6px; height: 6px; border-radius: 50%; background: #16a34a; flex-shrink: 0;
-  animation: pulse 2.2s ease-in-out infinite;
-}
-.c-links { display: flex; flex-direction: column; gap: 0.5rem; max-width: 520px; }
+
+.c-links { display: flex; flex-direction: column; gap: 0.6rem; }
 .c-link {
-  display: flex; align-items: center; gap: 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
   text-decoration: none; border: 1px solid #e2e8e3;
-  padding: 0.85rem 1.1rem; border-radius: 5px;
-  background: #f7faf8; transition: all 0.18s;
+  padding: 1rem 1.2rem; border-radius: 6px;
+  background: #fff; transition: all 0.18s;
 }
-.c-link:hover { border-color: rgba(22,163,74,0.3); background: rgba(22,163,74,0.03); }
-.c-lbl { font-family: var(--mono); font-size: 0.65rem; color: #8aa090; letter-spacing: 0.14em; text-transform: uppercase; min-width: 62px; }
-.c-val { font-family: var(--mono); font-size: 0.88rem; color: #1e2e20; transition: color 0.18s; }
+.c-link:hover { border-color: rgba(22,163,74,0.3); background: rgba(22,163,74,0.03); transform: translateX(3px); }
+.c-icon {
+  width: 34px; height: 34px; border-radius: 6px;
+  background: #f0f5f1; border: 1px solid #e2e8e3;
+  display: flex; align-items: center; justify-content: center;
+  color: #4a6a50; flex-shrink: 0; transition: all 0.18s;
+}
+.c-link:hover .c-icon { background: rgba(22,163,74,0.08); border-color: rgba(22,163,74,0.2); color: #16a34a; }
+.c-info { display: flex; flex-direction: column; gap: 0.15rem; }
+.c-lbl { font-family: var(--mono); font-size: 0.6rem; color: #8aa090; letter-spacing: 0.14em; text-transform: uppercase; }
+.c-val { font-family: var(--mono); font-size: 0.85rem; color: #1a2e1e; font-weight: 500; transition: color 0.18s; }
 .c-link:hover .c-val { color: #15803d; }
+
+@media (max-width: 700px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+}
 
 /* ══ RESPONSIVE ══ */
 @media (max-width: 900px) {
