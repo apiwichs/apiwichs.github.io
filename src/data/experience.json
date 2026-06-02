@@ -9,7 +9,7 @@
     "bullets": [
       "Working on the VI (Voltage-Current) Card — a precision analog hardware module used in source measurement and test systems. The core objective is extending its output voltage range from ±50 V to ±100 V without degrading measurement accuracy or introducing additional noise into the signal path.",
       "Analyzing the existing analog circuit architecture to understand where current component ratings and topological choices impose the ±50 V ceiling, then identifying the modifications needed to safely double that range while preserving linearity.",
-      "Establishing accurate DC biasing conditions for the analog signal chain, ensuring every active component operates in its intended linear region across the full ±100 V swing — a critical step given how bias shifts can compound noise and distortion at extended voltage levels."
+      "Establishing accurate DC biasing conditions for the analog signal chain, ensuring every active component operates in its intended linear region across the full ±100 V swing."
     ]
   },
   {
