@@ -1,5 +1,37 @@
 [
   {
+    "id": "hexforge-arena",
+    "type": "Embedded Systems · Bare-Metal C",
+    "title": "Hexforge Arena",
+    "desc": "A real-time top-down PvP fighting game built in bare-metal C on the DE1-SoC, with no OS or graphics libraries. Directly interfaces with memory-mapped VGA for all rendering, with a dynamic zoom camera system and class-based combat mechanics.",
+    "bullets": [
+      "Implemented memory-mapped VGA rendering pipeline from scratch in bare-metal C, writing pixels directly to the VGA buffer with no OS or graphics libraries.",
+      "Built a dynamic camera system that tracks both players and adjusts zoom based on their distance, using nearest-neighbor sampling for manual pixel scaling during VGA writes.",
+      "Designed class-based combat (Warrior and Sorceress) with distinct attack types, animation state machines, hit detection, and timing — all coordinated within a single real-time loop.",
+      "Managed real-time input handling, animation timing, collision detection, and system synchronization simultaneously under strict bare-metal constraints."
+    ],
+    "tags": [
+      {
+        "label": "Bare-Metal C",
+        "type": "sw"
+      },
+      {
+        "label": "DE1-SoC",
+        "type": "hw"
+      },
+      {
+        "label": "VGA",
+        "type": "prt"
+      }
+    ],
+    "images": [
+      "/assets/zoom_demo.gif",
+      "/assets/parry_gif_demo.gif"
+    ],
+    "github": "https://github.com/apiwichs/hexforge-arena",
+    "note": "Full source code withheld per UofT academic integrity policy. Demo and system overview available via GitHub."
+  },
+  {
     "id": "ece295-pcb",
     "type": "PCB Design · Embedded Systems",
     "title": "Embedded Radio Controller",
@@ -11,15 +43,24 @@
       "Routed dual-layer board with copper fills, via stitching, and signal-integrity considerations for clock lines."
     ],
     "tags": [
-      { "label": "Altium Designer", "type": "hw" },
-      { "label": "UART",            "type": "prt" },
-      { "label": "I²C",            "type": "prt" }
+      {
+        "label": "Altium Designer",
+        "type": "hw"
+      },
+      {
+        "label": "UART",
+        "type": "prt"
+      },
+      {
+        "label": "I²C",
+        "type": "prt"
+      }
     ],
     "images": [
-        "/assets/ece295-real-board.png",
-        "/assets/ece295-3d.png",
-        "/assets/ece295-pcb.png",
-        "/assets/ece295-schematic.png"
+      "/assets/ece295-real-board.png",
+      "/assets/ece295-3d.png",
+      "/assets/ece295-pcb.png",
+      "/assets/ece295-schematic.png"
     ],
     "github": "https://github.com/apiwichs/embedded-radio-controller"
   },
@@ -34,13 +75,22 @@
       "Verified with ModelSim waveform analysis and cycle-accurate simulation for collision accuracy."
     ],
     "tags": [
-      { "label": "Verilog",    "type": "hw" },
-      { "label": "DE1-SoC",   "type": "hw" },
-      { "label": "ModelSim",  "type": "sw" }
+      {
+        "label": "Verilog",
+        "type": "hw"
+      },
+      {
+        "label": "DE1-SoC",
+        "type": "hw"
+      },
+      {
+        "label": "ModelSim",
+        "type": "sw"
+      }
     ],
     "images": [
-    "/assets/game_recording.mp4",
-    "/assets/fpga-maze.png"
+      "/assets/game_recording.mp4",
+      "/assets/fpga-maze.png"
     ],
     "github": "https://github.com/apiwichs/3DMazeGame"
   },
@@ -55,16 +105,23 @@
       "Computed CPI, stall rate, and stage occupancy; visualized pipeline behavior with Matplotlib."
     ],
     "tags": [
-      { "label": "Python",             "type": "sw" },
-      { "label": "NumPy / Pandas",     "type": "sw" },
-      { "label": "Computer Architecture","type": "hw" }
+      {
+        "label": "Python",
+        "type": "sw"
+      },
+      {
+        "label": "NumPy / Pandas",
+        "type": "sw"
+      },
+      {
+        "label": "Computer Architecture",
+        "type": "hw"
+      }
     ],
-    
     "images": [
-    "/assets/pipeline_occupancy.png",
-    "/assets/stall_cycles.png"
+      "/assets/pipeline_occupancy.png",
+      "/assets/stall_cycles.png"
     ],
-    
     "github": "https://github.com/apiwichs/cpu-pipeline-sim"
   }
 ]
