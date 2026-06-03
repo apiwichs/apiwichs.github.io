@@ -66,7 +66,7 @@
   },
   {
     "id": "fpga-maze",
-    "type": "FPGA · Digital Design · RTL",
+    "type": "FPGA · Digital Design",
     "title": "Wayout — FPGA First-Person Maze Game",
     "desc": "Real-time pseudo-3D maze game on DE1-SoC, built in Verilog with a full VGA graphics pipeline and FSM-driven game logic — delivered over a 3-week sprint.",
     "bullets": [

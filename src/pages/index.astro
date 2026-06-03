@@ -16,8 +16,7 @@ const langSkills = [
 const toolSkills = [
   { name: 'Altium Designer', icon: '/assets/skills/altium-designer-logo.png' },
   { name: 'Git',             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-  { name: 'ModelSim',        icon: null, letter: 'SIM' },
-  { name: 'Quartus',         icon: null, letter: 'QUS' },
+
 ];
 
 const protoSkills = [
@@ -46,16 +45,13 @@ const protoSkills = [
 
         <div class="hero-disciplines fade-up">
           <span class="disc-pill">Embedded Systems</span>
-          <span class="disc-pill">FPGA / RTL</span>
+          <span class="disc-pill">FPGA</span>
           <span class="disc-pill">PCB Design</span>
           <span class="disc-pill">Analog &amp; Digital Circuit Design</span>
         </div>
 
         <p class="hero-bio fade-up">
-          UofT Computer Engineering student building hardware from the ground up.
-          I work across the full stack of digital hardware — writing RTL in Verilog,
-          laying out multi-layer PCBs in Altium Designer, and writing bare-metal firmware in C.
-          Currently targeting PEY co-op roles in embedded, firmware, and analog/mixed-signal.
+          Third-year BASc Electrical and Computer Engineering student at the University of Toronto, working on PCB design, bare-metal firmware, Verilog, and analog and digital circuits. Currently interning at Analog Devices.
         </p>
 
         <div class="hero-links fade-up">
@@ -137,7 +133,6 @@ const protoSkills = [
             <div class="exp-left">
               <div class={`exp-co${e.featured ? ' exp-co-adi' : ''}`}>
                 {e.company}
-                {e.featured && <span class="adi-star">★</span>}
               </div>
               <div class="exp-date">{e.date}</div>
               <div class="exp-loc">{e.location}</div>
@@ -172,9 +167,9 @@ const protoSkills = [
           <article class="proj-card fade-up" data-delay={String(i * 120)}>
             <div class="card-carousel" data-index="0">
               {p.images.map((src, ii) => (
-                (src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov')) ? (
+                (src.endsWith('.mp4') || src.endsWith('.webm')) ? (
                   <video class={`carousel-img${ii === 0 ? ' active' : ''}`} autoplay muted loop playsinline>
-                    <source src={src} type={src.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
+                    <source src={src} type="video/mp4" />
                   </video>
                 ) : (
                   <img
@@ -322,7 +317,7 @@ const protoSkills = [
           <h2 class="contact-heading">Let's work together.</h2>
           <p class="contact-sub">
             Actively seeking PEY co-op roles in embedded systems, firmware,
-            FPGA/RTL, and analog/mixed-signal hardware.
+            FPGA, and analog/mixed-signal hardware.
           </p>
           <div class="avail-badge">
             Seeking PEY Co-op · Starting Summer/Fall 2027
@@ -653,13 +648,7 @@ const protoSkills = [
   font-size: 1.1rem;
   color: #15803d;
 }
-.adi-star {
-  font-size: 0.65rem;
-  color: #16a34a;
-  vertical-align: super;
-  margin-left: 0.2rem;
-  opacity: 0.8;
-}
+
 .exp-date { font-family: var(--mono); font-size: 0.78rem; color: #2a5a3a; font-weight: 600; margin-bottom: 0.25rem; letter-spacing: 0.02em; }
 .exp-loc  { font-family: var(--mono); font-size: 0.7rem;  color: #8aa090; }
 
