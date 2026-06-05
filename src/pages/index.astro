@@ -905,17 +905,29 @@ document.querySelectorAll('.card-carousel').forEach(carousel => {
 
   if (!prev || !next) return;
   let idx = 0;
+
+  function updateButtons() {
+    prev.style.opacity = idx === 0 ? '0.3' : '1';
+    prev.style.pointerEvents = idx === 0 ? 'none' : 'auto';
+    next.style.opacity = idx === imgs.length - 1 ? '0.3' : '1';
+    next.style.pointerEvents = idx === imgs.length - 1 ? 'none' : 'auto';
+  }
+
   function show(n) {
+    if (n < 0 || n >= imgs.length) return;
     const current = imgs[idx];
     current.classList.remove('active');
     if (dots[idx]) dots[idx].classList.remove('active');
     if (current.tagName === 'VIDEO') current.pause();
-    idx = (n + imgs.length) % imgs.length;
+    idx = n;
     const nextEl = imgs[idx];
     nextEl.classList.add('active');
     if (dots[idx]) dots[idx].classList.add('active');
     if (nextEl.tagName === 'VIDEO') nextEl.play();
+    updateButtons();
   }
+
+  updateButtons();
   prev.addEventListener('click', () => show(idx - 1));
   next.addEventListener('click', () => show(idx + 1));
   dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
