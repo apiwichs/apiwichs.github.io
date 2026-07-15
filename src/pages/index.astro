@@ -20,9 +20,9 @@ const toolSkills = [
 ];
 
 const protoSkills = [
-  { name: 'I²C',  icon: null, letter: 'I²C'  },
-  { name: 'UART', icon: null, letter: 'UART' },
-  { name: 'SPI',  icon: null, letter: 'SPI'  },
+  { name: 'SPI',  sub: '4-wire synchronous',  svg: `<svg viewBox="0 0 48 48" class="proto-svg" role="img" aria-label="SPI: four-wire synchronous bus"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 h4 V4 h4 V12 h4 V4 h4 V12 h4 V4 h4 V12 h4 V4 h4 V12 h4 V4 h4"/><path d="M4 20 h5 V28 h5 V20 h5 h5 V28 h5 V20 h5 V28 h5 h5"/><path d="M4 44 h5 V36 h5 V44 h5 V36 h5 h5 V44 h5 V36 h5 h5"/></g></svg>` },
+  { name: 'I²C',  sub: '2-wire bus',          svg: `<svg viewBox="0 0 48 48" class="proto-svg" role="img" aria-label="I2C: two-wire bus"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17 h4 V7 h4 V17 h4 V7 h4 V17 h4 V7 h4 V17 h4 V7 h4 V17 h4 V7 h4"/><path d="M4 31 h5 V41 h5 V31 h5 h5 V41 h5 V31 h5 V41 h5 h5"/></g></svg>` },
+  { name: 'UART', sub: '1-wire asynchronous', svg: `<svg viewBox="0 0 48 48" class="proto-svg" role="img" aria-label="UART: single-wire asynchronous frame"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16 h4 h4 V34 h4 V16 h4 V34 h4 V16 h4 h4 V34 h4 V16 h4 h4"/></g><g stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" opacity="0.45"><path d="M12 8 V42"/><path d="M40 8 V42"/></g></svg>` },
 ];
 
 ---
@@ -82,7 +82,7 @@ const protoSkills = [
             <span class="adi-card-label">Current Role</span>
           </div>
           <div class="adi-card-co">Analog Devices Inc.</div>
-          <div class="adi-card-role">Engineer Intern</div>
+          <div class="adi-card-role">Hardware Engineering Intern</div>
           <div class="adi-card-date">May 2026 – Present</div>
         </div>
 
@@ -104,11 +104,6 @@ const protoSkills = [
             <div class="fact-label">Honours</div>
             <div class="fact-val fact-green">3× Dean's Honour List</div>
           </div>
-          <div class="fact-item">
-            <div class="fact-label">Minor</div>
-            <div class="fact-val">Artificial Intelligence</div>
-          </div>
-
         </div>
 
 
@@ -232,7 +227,6 @@ const protoSkills = [
         </div>
         <div class="edu-right">
           <div class="edu-deg">BASc Electrical & Computer Engineering</div>
-          <div class="edu-deg">Minor in Artificial Intelligence</div>
           <div class="edu-honour">3× Dean's Honour List</div>
           <div class="edu-courses" style="margin-top:1rem">
             <span class="course-label">Completed —</span> Digital Systems · Computer Organization · Software Design
@@ -290,9 +284,10 @@ const protoSkills = [
           <div class="skill-box-divider"></div>
           <div class="sg-icons">
             {protoSkills.map(s => (
-              <div class="skill-chip">
-                <div class="skill-letter">{s.letter}</div>
+              <div class="skill-chip proto-chip">
+                <div class="proto-icon" set:html={s.svg} />
                 <span class="skill-chip-label">{s.name}</span>
+                <span class="proto-sub">{s.sub}</span>
               </div>
             ))}
           </div>
@@ -784,6 +779,14 @@ video.carousel-img { object-fit: contain; background: #0a0f0b; }
   border-radius: 6px; text-align: center; line-height: 1.2; padding: 0.2rem;
 }
 .skill-chip-label { font-size: 0.72rem; font-weight: 500; color: #4a6050; text-align: center; line-height: 1.2; }
+
+/* protocol chips */
+.proto-chip { gap: 0.35rem; padding: 0.9rem 0.4rem 0.75rem; }
+.proto-icon { width: 48px; height: 48px; color: #15803d; display: block; }
+.proto-icon svg { width: 100%; height: 100%; display: block; }
+.proto-chip .skill-chip-label { font-family: var(--mono); font-weight: 700; color: #15803d; letter-spacing: 0.02em; margin-top: 0.15rem; }
+.proto-sub { font-size: 0.58rem; color: #8aa090; text-align: center; line-height: 1.25; letter-spacing: 0.01em; }
+.skill-chip:hover .proto-icon { color: #16a34a; }
 
 /* ══ EDUCATION ══ */
 .education-section { background: #f7faf8; border-top: 1px solid #e2e8e3; }
