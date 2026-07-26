@@ -1,7 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --sidebar-w:    240px;
+  --sidebar-w:    176px;
   --bg:           #ffffff;
   --bg-soft:      #f8f9f8;
   --bg-tint:      #f0f5f1;
