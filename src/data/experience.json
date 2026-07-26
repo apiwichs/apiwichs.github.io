@@ -7,9 +7,11 @@
     "featured": true,
     "incoming": false,
     "bullets": [
-      "Working on the VI (Voltage-Current) Card — a precision analog hardware module used in source measurement and test systems. The core objective is extending its output voltage range from ±50 V to ±100 V without degrading measurement accuracy or introducing additional noise into the signal path.",
-      "Analyzing the existing analog circuit architecture to understand where current component ratings and topological choices impose the ±50 V ceiling, then identifying the modifications needed to safely double that range while preserving linearity.",
-      "Establishing accurate DC biasing conditions for the analog signal chain, ensuring every active component operates in its intended linear region across the full ±100 V swing."
+      "Extending the output range of a precision VI (voltage-current) source-measure card from ±50 V to ±100 V at 200 mA, owning the high-voltage output stage from LTspice model to protoboard bring-up.",
+      "Designed a cascode output stage so no single MOSFET absorbs the full 200 V rail-to-rail swing at 200 mA: stacking devices in series splits the drain-source voltage and divides the resulting power dissipation between them, keeping each device inside V_DS and thermal limits the single-device topology could not meet. Selected the supporting high-voltage set, including complementary MOSFET pairs, 300 V-class BJTs, precision op-amps, and decoupling capacitors re-rated from 50 V to the 250 to 500 V class.",
+      "Recalculated the DC biasing network for the doubled rail, re-deriving operating points across the Class AB stage, cascode devices, and Zener/BJT bias spreader so every active device stays in its linear region across the full swing, then verified both feedback paths hold at the extremes: voltage feedback reports what the DUT actually receives at the pin, and current feedback clamps delivery at the IDAC-programmed limit.",
+      "Verified all designs in LTspice across the full swing, automating the regression testing in Python (PyLTSpice) to sweep DC input across schematic revisions and flag divergence by percent-difference tolerance. Traced a DC operating point convergence failure that had blocked simulation of the stage entirely to floating nodes in the negative pull-down sub-circuit.",
+      "Characterized the original ±50 V card on Credence TMT ASL1000 production ATE to establish the performance baseline for the extension, then correlated protoboard measurements of the extended design against simulation, resolving a floating MOSFET gate that produced phantom DMM readings and a V_GS mismatch against the simulated bias point."
     ]
   },
   {

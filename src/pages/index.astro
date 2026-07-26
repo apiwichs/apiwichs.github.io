@@ -36,23 +36,22 @@ const protoSkills = [
       <!-- ── LEFT: identity + bio ── -->
       <div class="hero-left">
 
-        <div class="hero-label fade-up">
-          <span class="hero-label-line"></span>
-          <span class="hero-label-text">// about me</span>
-        </div>c
-
         <h1 class="hero-name fade-up">Apiwich Sumeksri</h1>
 
-        <div class="hero-disciplines fade-up">
-          <span class="disc-pill">Embedded Systems</span>
-          <span class="disc-pill">FPGA</span>
-          <span class="disc-pill">PCB Design</span>
-          <span class="disc-pill">Analog &amp; Digital Circuit Design</span>
-        </div>
-
         <p class="hero-bio fade-up">
-          Third-year BASc Electrical and Computer Engineering student at the University of Toronto, working on PCB design, bare-metal firmware, Verilog, and analog and digital circuits.
+          Third-year BASc Electrical and Computer Engineering student at the University of Toronto,
+          <span class="bio-hl">3× Dean's Honour List</span>. Currently interning at Analog Devices
+          on precision analog test hardware.
         </p>
+
+        <div class="disc-caption fade-up">My areas of focus are:</div>
+
+        <ul class="disc-list fade-up">
+          <li>Embedded Systems</li>
+          <li>FPGA</li>
+          <li>PCB Design</li>
+          <li>Analog &amp; Digital Circuit Design</li>
+        </ul>
 
         <div class="hero-links fade-up">
           <a href="#projects" class="hero-btn-fill">View Projects</a>
@@ -76,36 +75,39 @@ const protoSkills = [
       <div class="hero-right fade-up" data-delay="200">
 
         <!-- ADI callout — prominent card -->
-        <div class="adi-card">
+        <a href="#experience" class="adi-card">
           <div class="adi-card-header">
             <span class="adi-dot"></span>
             <span class="adi-card-label">Current Role</span>
           </div>
           <div class="adi-card-co">Analog Devices Inc.</div>
           <div class="adi-card-role">Hardware Engineering Intern</div>
-          <div class="adi-card-date">May 2026 – Present</div>
-        </div>
+          <div class="adi-card-date">May 2026 – Present</div>
 
-        <!-- Quick facts grid -->
-        <div class="hero-facts">
-          <div class="fact-item">
-            <div class="fact-label">Program</div>
-            <div class="fact-val">BASc Electrical & Computer Engineering</div>
+          <div class="adi-card-hook">
+            Extending a precision source-measure card from ±50 V to ±100 V at 200 mA.
           </div>
-          <div class="fact-item">
-            <div class="fact-label">School</div>
-            <div class="fact-val">University of Toronto</div>
-          </div>
-          <div class="fact-item">
-            <div class="fact-label">Graduation</div>
-            <div class="fact-val">June 2028</div>
-          </div>
-          <div class="fact-item">
-            <div class="fact-label">Honours</div>
-            <div class="fact-val fact-green">3× Dean's Honour List</div>
-          </div>
-        </div>
 
+          <div class="adi-card-tech">
+            <span>Analog Design</span>
+            <span>LTspice</span>
+            <span>Python</span>
+            <span>ATE</span>
+          </div>
+
+          <div class="adi-card-status">
+            <div class="status-row">
+              <span class="status-k">Now</span>
+              <span class="status-v">Protoboard bring-up</span>
+            </div>
+            <div class="status-row">
+              <span class="status-k status-next">Next</span>
+              <span class="status-v">Full-swing validation</span>
+            </div>
+          </div>
+
+          <span class="adi-card-cta">View full role ↗</span>
+        </a>
 
       </div>
 
@@ -406,32 +408,14 @@ const protoSkills = [
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 320px;
-  gap: 5rem;
+  gap: 3.5rem;
   align-items: start;
 }
 
 /* Left column */
 .hero-left { display: flex; flex-direction: column; }
 
-.hero-label {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.75rem;
-}
-.hero-label-line {
-  width: 28px;
-  height: 1.5px;
-  background: #16a34a;
-  flex-shrink: 0;
-}
-.hero-label-text {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  color: #16a34a;
-  letter-spacing: 0.12em;
-}
+
 
 .hero-name {
   font-size: clamp(2.4rem, 4.2vw, 3.4rem);
@@ -439,39 +423,59 @@ const protoSkills = [
   color: #0a1409;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.15rem;
   white-space: nowrap;
 }
 
-.hero-disciplines {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.4rem;
-  margin-bottom: 2rem;
-  max-width: 380px;
+/* Highlighted term inside the bio */
+.bio-hl {
+  font-weight: 700;
+  color: #15803d;
+  white-space: nowrap;
 }
-.disc-pill {
+
+/* Focus areas: caption + list */
+.disc-caption {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  color: #1a4a2e;
-  background: #eef7f1;
-  border: 1px solid #c4dece;
-  padding: 0.32rem 0.7rem;
-  border-radius: 3px;
-  white-space: nowrap;
-  text-align: center;
-  letter-spacing: 0.02em;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #3a5a42;
+  margin: 1rem 0 0.45rem;
 }
 
-.hero-bio {
-  font-size: 0.97rem;
-  color: #2a3d2e;
-  font-weight: 400;
-  line-height: 1.85;
-  max-width: 480px;
-  margin-bottom: 2.25rem;
+/* Focus areas list
+   Single column. For two columns, change
+   grid-template-columns to: max-content max-content
+   and gap to: 0.55rem 2.4rem                        */
+.disc-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: max-content;
+  justify-content: start;
+  gap: 0.5rem;
+  margin: 0 0 1.9rem;
 }
+.disc-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #1e3324;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.disc-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.58em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #16a34a;
+}
+
 
 .hero-links { display: flex; gap: 0.65rem; flex-wrap: wrap; align-items: center; }
 .hero-btn-fill {
@@ -501,13 +505,22 @@ const protoSkills = [
 
 /* ADI card */
 .adi-card {
+  display: block;
+  text-decoration: none;
   background: #fff;
-  border: 1px solid rgba(22,163,74,0.22);
-  border-top: 3px solid #16a34a;
+  border: 1px solid rgba(217,83,79,0.22);
+  border-top: 3px solid #d9534f;
   border-radius: 6px;
-  padding: 1.25rem 1.4rem 1.4rem;
-  box-shadow: 0 2px 20px rgba(22,163,74,0.06), 0 1px 4px rgba(0,0,0,0.04);
+  padding: 1.6rem 1.7rem 1.7rem;
+  box-shadow: 0 2px 20px rgba(217,83,79,0.07), 0 1px 4px rgba(0,0,0,0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
+.adi-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(217,83,79,0.45);
+  box-shadow: 0 6px 26px rgba(217,83,79,0.15), 0 2px 6px rgba(0,0,0,0.05);
+}
+.adi-card:focus-visible { outline: 2px solid #d9534f; outline-offset: 3px; }
 .adi-card-header {
   display: flex;
   align-items: center;
@@ -515,26 +528,26 @@ const protoSkills = [
   margin-bottom: 0.9rem;
 }
 .adi-dot {
-  width: 7px; height: 7px;
+  width: 8px; height: 8px;
   border-radius: 50%;
-  background: #16a34a;
+  background: #d9534f;
   flex-shrink: 0;
   animation: pulse 2.2s ease-in-out infinite;
 }
 @keyframes pulse {
-  0%,100% { box-shadow: 0 0 0 2px rgba(22,163,74,0.2); }
-  50%      { box-shadow: 0 0 0 7px rgba(22,163,74,0.04); }
+  0%,100% { box-shadow: 0 0 0 2px rgba(217,83,79,0.25); }
+  50%      { box-shadow: 0 0 0 7px rgba(217,83,79,0.06); }
 }
 .adi-card-label {
   font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #16a34a;
+  color: #d9534f;
 }
 .adi-card-co {
-  font-size: 1.08rem;
+  font-size: 1.22rem;
   font-weight: 700;
   color: #0a1409;
   letter-spacing: -0.01em;
@@ -542,49 +555,98 @@ const protoSkills = [
   line-height: 1.2;
 }
 .adi-card-role {
-  font-size: 0.88rem;
+  font-size: 0.97rem;
   font-weight: 500;
   color: #2a4a30;
   margin-bottom: 0.35rem;
 }
 .adi-card-date {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  color: #7a9a80;
-  letter-spacing: 0.02em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #56705c;
+  letter-spacing: 0.03em;
 }
 
-/* Facts grid */
-.hero-facts {
-  background: #fff;
-  border: 1px solid #e2e8e3;
-  border-radius: 6px;
-  overflow: hidden;
+.adi-card-hook {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #eef3ef;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #2a4a30;
+  font-weight: 400;
 }
-.fact-item {
-  display: grid;
-  grid-template-columns: 86px 1fr;
-  gap: 0.75rem;
-  padding: 0.75rem 1.1rem;
-  border-bottom: 1px solid #f0f5f1;
-  align-items: center;
+.adi-card-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.7rem;
 }
-.fact-item:last-child { border-bottom: none; }
-.fact-label {
+.adi-card-tech span {
   font-family: var(--mono);
-  font-size: 0.59rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #9ab8a2;
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: #15803d;
+  background: rgba(22,163,74,0.09);
+  border: 1px solid rgba(22,163,74,0.18);
+  border-radius: 2px;
+  padding: 0.28rem 0.6rem;
 }
-.fact-val {
-  font-size: 0.83rem;
-  font-weight: 500;
-  color: #1a2e1e;
+.adi-card-status {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid #eef3ef;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.status-row { display: flex; align-items: center; gap: 0.6rem; }
+.status-k {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #15803d;
+  background: rgba(22,163,74,0.10);
+  border: 1px solid rgba(22,163,74,0.22);
+  border-radius: 2px;
+  padding: 0.2rem 0.45rem;
+  flex-shrink: 0;
+  min-width: 3.1rem;
+  text-align: center;
+}
+.status-k.status-next {
+  color: #7a9a80;
+  background: #f4f7f4;
+  border-color: #e2e8e3;
+}
+.status-v {
+  font-size: 0.86rem;
+  color: #2a4a30;
+  font-weight: 400;
   line-height: 1.4;
 }
-.fact-green { color: #15803d; font-weight: 600; }
+.adi-card-cta {
+  display: block;
+  width: 100%;
+  margin-top: 1.1rem;
+  padding: 0.7rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: #fff;
+  background: #16a34a;
+  border-radius: 3px;
+  transition: background 0.18s ease, box-shadow 0.18s ease;
+}
+.adi-card:hover .adi-card-cta {
+  background: #15803d;
+  box-shadow: 0 4px 14px rgba(22,163,74,0.28);
+}
 
 /* Availability strip */
 .avail-strip {
@@ -611,7 +673,6 @@ const protoSkills = [
 @media (max-width: 860px) {
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-name { white-space: normal; font-size: clamp(2.2rem, 8vw, 3rem); }
-  .hero-disciplines { max-width: 100%; }
 }
 @media (max-width: 600px) {
   .hero-inner { padding: 3.5rem 1.25rem 3rem; }
