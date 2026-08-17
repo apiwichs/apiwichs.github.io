@@ -4,25 +4,32 @@ import Sidebar from '../components/Sidebar.astro';
 import experience from '../data/experience.json';
 import projects from '../data/projects.json';
 
+// A project is "Currently Building" when ongoing is true.
+// To move it to Completed: set "ongoing": false  (that's the only edit needed).
+const ongoingProjects   = projects.filter(p => p.ongoing === true);
+const completedProjects = projects.filter(p => p.ongoing !== true);
+
 const langSkills = [
-  { name: 'C',               icon: '/assets/skills/c-logo.png' },
-  { name: 'C++',             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
-  { name: 'Python',          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-  { name: 'Verilog',         icon: '/assets/skills/verilog-logo.png' },
-  { name: 'Java',            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
-  { name: 'RISC-V Assembly', icon: '/assets/skills/assembly-logo.png' },
+  { name: 'C',               icon: '/assets/skills/c-logo.png', scale: 1.4 },
+  { name: 'C++',             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', scale: 0.79 },
+  { name: 'Python',          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', scale: 0.79 },
+  { name: 'Verilog',         icon: '/assets/skills/verilog-logo.png', scale: 1.4 },
+  { name: 'Java',            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', scale: 0.79 },
+  { name: 'RISC-V Assembly', icon: '/assets/skills/assembly-logo.png', scale: 1.4, labelSm: true },
 ];
 
 const toolSkills = [
-  { name: 'Altium Designer', icon: '/assets/skills/altium-designer-logo.png' },
-  { name: 'LTspice',         icon: '/assets/skills/ltspice_photo.png' },
-  { name: 'Git',             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+  { name: 'Altium Designer', icon: '/assets/skills/altium-designer-logo.png', scale: 1.3 },
+  { name: 'LTspice',         icon: '/assets/skills/ltspice_photo.png', scale: 1.3 },
+  { name: 'STM32',           icon: '/assets/skills/stm32.png', scale: 1.3 },
+  { name: 'Waveforms by Digilent', icon: '/assets/skills/waveforms.png', scale: 1.3 },
+  { name: 'Git',             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', scale: 0.79 },
 ];
 
 const protoSkills = [
-  { name: 'SPI',  icon: '/assets/skills/spi_photo.png'  },
-  { name: 'I²C',  icon: '/assets/skills/i2c_photo.png'  },
-  { name: 'UART', icon: '/assets/skills/uart_photo.png' },
+  { name: 'SPI',  icon: '/assets/skills/spi_photo.png', scale: 1.3 },
+  { name: 'I²C',  icon: '/assets/skills/i2c_photo.png', scale: 1.3 },
+  { name: 'UART', icon: '/assets/skills/uart_photo.png', scale: 1.3 },
 ];
 
 ---
@@ -159,8 +166,96 @@ const protoSkills = [
         <div class="section-rule"></div>
       </div>
 
+      {ongoingProjects.length > 0 && (
+        <Fragment>
+          <h3 class="proj-subhead">Currently Building</h3>
+
+          {ongoingProjects.map(p => (
+            <article class="proj-featured fade-up">
+              <div class="feat-media">
+                <div class="card-carousel" data-index="0">
+                  {p.images.map((src, ii) => (
+                    (src.endsWith('.mp4') || src.endsWith('.webm')) ? (
+                      <video class={`carousel-img${ii === 0 ? ' active' : ''}`} autoplay muted loop playsinline>
+                        <source src={src} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <img src={src} alt={`${p.title} image ${ii + 1}`}
+                           class={`carousel-img${ii === 0 ? ' active' : ''}`}
+                           onerror="this.style.display='none'" />
+                    )
+                  ))}
+                  {p.images.length > 1 && (
+                    <Fragment>
+                      <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+                      <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+                      <div class="carousel-dots">
+                        {p.images.map((_, di) => (
+                          <span class={`carousel-dot${di === 0 ? ' active' : ''}`}></span>
+                        ))}
+                      </div>
+                    </Fragment>
+                  )}
+                  {p.images.length === 0 && (
+                    <div class="feat-noimg">Build in progress</div>
+                  )}
+                </div>
+              </div>
+
+              <div class="feat-body">
+                <div class="card-type-row">
+                  {p.type.split(' · ').map(t => (
+                    <span class="card-type-pill">{t}</span>
+                  ))}
+                </div>
+                <h3 class="card-title">{p.title}</h3>
+                <div class="proj-status"><span class="proj-status-dot"></span>{p.status || 'In progress'}</div>
+                <p class="card-desc">{p.desc}</p>
+
+                {p.milestones && (
+                  <div class="proj-progress">
+                    <div class="proj-progress-head">
+                      <span class="pp-label">Milestones</span>
+                      <span class="pp-count">
+                        {p.milestones.filter(m => m.done).length} of {p.milestones.length} complete
+                        <span class="pp-pct">{Math.round(p.milestones.filter(m => m.done).length / p.milestones.length * 100)}%</span>
+                      </span>
+                    </div>
+                    <div class="proj-bar">
+                      <div class="proj-bar-fill" style={`width:${Math.round(p.milestones.filter(m => m.done).length / p.milestones.length * 100)}%`}></div>
+                    </div>
+                    <ul class="proj-ms">
+                      {p.milestones.map(m => (
+                        <li class={m.done ? 'ms-done' : ''}>
+                          <span class="ms-mark">{m.done ? '✓' : '○'}</span>
+                          <span class="ms-text">{m.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <div class="card-tags">
+                  {p.tags.slice(0, 3).map(t => (
+                    <span class="ctag">{t.label}</span>
+                  ))}
+                </div>
+                {p.github && (
+                  <a href={p.github} target="_blank" rel="noopener" class="github-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  View on GitHub
+                </a>
+                )}
+              </div>
+            </article>
+          ))}
+
+          <h3 class="proj-subhead proj-subhead-gap">Completed</h3>
+        </Fragment>
+      )}
+
       <div class="projects-grid">
-        {projects.map((p, i) => (
+        {completedProjects.map((p, i) => (
           <article class="proj-card fade-up" data-delay={String(i * 120)}>
             <div class="card-carousel" data-index="0">
               {p.images.map((src, ii) => (
@@ -257,9 +352,9 @@ const protoSkills = [
           <div class="sg-icons">
             {langSkills.map(s => (
               <div class="skill-chip">
-                <img src={s.icon} alt={s.name} class="skill-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <img src={s.icon} alt={s.name} class="skill-icon" style={s.scale ? `transform:scale(${s.scale})` : undefined} onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
                 <div class="skill-letter" style="display:none">{s.name}</div>
-                <span class="skill-chip-label">{s.name}</span>
+                <span class={`skill-chip-label${s.labelSm ? ' label-sm' : ''}`}>{s.name}</span>
               </div>
             ))}
           </div>
@@ -272,10 +367,10 @@ const protoSkills = [
             {toolSkills.map(s => (
               <div class="skill-chip">
                 {s.icon
-                  ? <img src={s.icon} alt={s.name} class="skill-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                  ? <img src={s.icon} alt={s.name} class="skill-icon" style={s.scale ? `transform:scale(${s.scale})` : undefined} onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
                   : null}
                 <div class="skill-letter" style={s.icon ? 'display:none' : ''}>{s.letter}</div>
-                <span class="skill-chip-label">{s.name}</span>
+                <span class={`skill-chip-label${s.labelSm ? ' label-sm' : ''}`}>{s.name}</span>
               </div>
             ))}
           </div>
@@ -287,9 +382,9 @@ const protoSkills = [
           <div class="sg-icons">
             {protoSkills.map(s => (
               <div class="skill-chip proto-chip">
-                <img src={s.icon} alt={s.name} class="skill-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <img src={s.icon} alt={s.name} class="skill-icon" style={s.scale ? `transform:scale(${s.scale})` : undefined} onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
                 <div class="skill-letter" style="display:none">{s.name}</div>
-                <span class="skill-chip-label">{s.name}</span>
+                <span class={`skill-chip-label${s.labelSm ? ' label-sm' : ''}`}>{s.name}</span>
               </div>
             ))}
           </div>
@@ -502,6 +597,148 @@ const protoSkills = [
   gap: 1rem;
   padding-top: 0.5rem;
 }
+
+/* Projects subsections */
+.proj-subhead {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #0d1a0f;
+  margin: 0 0 1.1rem;
+}
+.proj-subhead::before {
+  content: '';
+  width: 4px;
+  height: 1.15rem;
+  background: #16a34a;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.proj-subhead-gap { margin-top: 3rem; }
+
+.proj-featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: #fff;
+  border: 1px solid #e2e8e3;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.proj-featured .feat-media { position: relative; min-height: 140px; background: #f4f7f4; }
+.proj-featured .card-carousel { height: 100%; }
+.feat-noimg {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.72rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #a8c4b0;
+}
+.feat-body { padding: 0.95rem 1.1rem; }
+.proj-featured .card-desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.proj-featured .card-title { margin-bottom: 0.35rem; }
+.proj-featured .card-type-row { margin-bottom: 0.5rem; }
+.proj-featured .card-tags { margin-top: 0.7rem; }
+
+@media (max-width: 860px) {
+  .proj-featured { grid-template-columns: 1fr; }
+  .proj-ms { grid-template-columns: 1fr; }
+  .proj-featured .feat-media { min-height: 200px; }
+}
+
+/* Project status + milestones */
+.proj-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0e6b34;
+  background: rgba(22,163,74,0.12);
+  border: 1px solid rgba(22,163,74,0.28);
+  border-radius: 2px;
+  padding: 0.22rem 0.5rem;
+  margin: 0 0 0.45rem;
+}
+.proj-status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #16a34a;
+  animation: pulse 2.2s ease-in-out infinite;
+}
+.proj-progress { margin-top: 0.7rem; margin-bottom: 0.7rem; }
+.proj-progress-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+.pp-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2a4a30;
+}
+.pp-count {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: #7a9a80;
+}
+.pp-pct {
+  color: #15803d;
+  font-weight: 700;
+  margin-left: 0.45rem;
+}
+.ms-text { flex: 1; }
+.proj-bar {
+  height: 5px;
+  background: #eef3ef;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.45rem;
+}
+.proj-bar-fill { height: 100%; background: #16a34a; }
+.proj-ms {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.2rem 1rem;
+}
+.proj-ms li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-size: 0.71rem;
+  line-height: 1.3;
+  color: #7a9a80;
+}
+.proj-ms li.ms-done { color: #2a4a30; }
+.ms-mark {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: #c8d8ca;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+.ms-done .ms-mark { color: #16a34a; }
 
 /* ADI card */
 .adi-card {
@@ -825,22 +1062,46 @@ video.carousel-img { object-fit: contain; background: #0a0f0b; }
 }
 .skill-box-title { font-size: 1.05rem; font-weight: 700; color: #0d1a0f; margin-bottom: 0.7rem; letter-spacing: -0.01em; }
 .skill-box-divider { height: 1px; background: #e2e8e3; margin-bottom: 1.25rem; }
-.sg-icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; }
+.sg-icons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.65rem; align-items: stretch; }
 .skill-chip {
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  padding: 0.9rem 0.5rem;
+  display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+  padding: 0.6rem 0.3rem;
   background: #fff; border: 1px solid #e2e8e3;
   border-radius: 6px; transition: all 0.18s; cursor: default;
+  height: 100%;
+  min-width: 0;
+  justify-content: flex-start;
 }
 .skill-chip:hover { border-color: rgba(22,163,74,0.35); transform: translateY(-1px); box-shadow: 0 3px 10px rgba(22,163,74,0.08); }
-.skill-icon { width: 48px; height: 48px; object-fit: contain; display: block; }
+.skill-icon {
+  width: 100%;
+  max-width: 106px;
+  height: 66px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
 .skill-letter {
   width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
   font-family: var(--mono); font-size: 0.8rem; font-weight: 700;
   color: #15803d; background: rgba(22,163,74,0.08);
   border-radius: 6px; text-align: center; line-height: 1.2; padding: 0.2rem;
 }
-.skill-chip-label { font-size: 0.86rem; font-weight: 500; color: #4a6050; text-align: center; line-height: 1.25; }
+.skill-chip-label {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #4a6050;
+  text-align: center;
+  line-height: 1.3;
+  min-height: 2.6em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
+}
+.skill-chip-label.label-sm { font-size: 0.78rem; }
 
 /* protocol chips */
 .proto-chip .skill-chip-label { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; color: #15803d; letter-spacing: 0.02em; }
@@ -860,7 +1121,7 @@ video.carousel-img { object-fit: contain; background: #0a0f0b; }
 .edu-left { display: flex; flex-direction: column; gap: 0.25rem; }
 .edu-inst { font-size: 1rem; font-weight: 700; color: #0d1a0f; line-height: 1.3; }
 .edu-date { font-family: var(--mono); font-size: 0.78rem; color: #2a5a3a; font-weight: 600; margin-top: 0.2rem; letter-spacing: 0.02em; }
-.edu-deg  { font-size: 0.88rem; color: #4a6050; font-weight: 300; line-height: 1.6; }
+.edu-deg  { font-size: 0.92rem; color: #1e3324; font-weight: 700; line-height: 1.6; }
 .edu-honour { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: #15803d; margin-top: 0.5rem; letter-spacing: 0.04em; }
 .edu-courses { font-size: 0.85rem; color: #4a6050; font-weight: 300; line-height: 1.7; }
 .course-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; color: #2a5a3a; letter-spacing: 0.08em; }
@@ -893,9 +1154,9 @@ video.carousel-img { object-fit: contain; background: #0a0f0b; }
 }
 .avail-badge {
   display: inline-flex; align-items: center; gap: 0.55rem;
-  font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
-  color: #1a2e1e; background: #f0f4f1;
-  border: 1px solid #d4e0d6; padding: 0.38rem 0.9rem;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
+  color: #0e6b34; background: rgba(22,163,74,0.12);
+  border: 1px solid rgba(22,163,74,0.3); padding: 0.38rem 0.9rem;
   border-radius: 3px;
 }
 
