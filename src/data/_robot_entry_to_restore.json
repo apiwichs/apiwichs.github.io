@@ -1,0 +1,55 @@
+// PASTE THIS BACK AS THE FIRST ENTRY IN projects.json WHEN READY.
+// Insert immediately after the opening [ and before the "ece295-pcb" object.
+// Remember to keep the comma after the closing brace.
+
+  {
+    "id": "balancing-robot",
+    "type": "Embedded Systems · Control Systems",
+    "title": "Self-Balancing Robot",
+    "ongoing": true,
+    "desc": "Two-wheeled self-balancing robot built on an STM32F446RE with an MPU-6050 IMU. Written bare-metal in C, with peripheral drivers implemented from the register level rather than using a HAL.",
+    "status": "In progress",
+    "milestones": [
+      {
+        "label": "Bare-metal I²C driver (CR1/CR2/CCR/TRISE)",
+        "done": true
+      },
+      {
+        "label": "MPU-6050 read and verification on logic analyzer",
+        "done": true
+      },
+      {
+        "label": "Complementary filter for tilt angle",
+        "done": false
+      },
+      {
+        "label": "PID control loop",
+        "done": false
+      },
+      {
+        "label": "Motor driver and chassis integration",
+        "done": false
+      }
+    ],
+    "bullets": [
+      "Implemented an I²C master driver from scratch on the STM32F446RE, configuring CR1, CR2, CCR and TRISE directly and handling the full start/address/data/stop transaction sequence without a HAL.",
+      "Verified bus timing and protocol framing on a logic analyzer, decoding transactions against the MPU-6050 datasheet to confirm correct addressing and acknowledgement behaviour.",
+      "Built a bare-metal SPI master driver alongside it, working through TXE flag behaviour, overrun handling, and multi-slave chip-select architecture."
+    ],
+    "tags": [
+      {
+        "label": "Bare-Metal C",
+        "type": "sw"
+      },
+      {
+        "label": "STM32F446RE",
+        "type": "hw"
+      },
+      {
+        "label": "I²C",
+        "type": "prt"
+      }
+    ],
+    "images": [],
+    "github": "https://github.com/apiwichs/self-balancing-robot"
+  },
