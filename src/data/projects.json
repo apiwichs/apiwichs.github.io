@@ -1,54 +1,45 @@
 [
   {
-    "id": "balancing-robot",
-    "type": "Embedded Systems · Control Systems",
-    "title": "Self-Balancing Robot",
-    "ongoing": true,
-    "desc": "Two-wheeled self-balancing robot built on an STM32F446RE with an MPU-6050 IMU. Written bare-metal in C, with peripheral drivers implemented from the register level rather than using a HAL.",
-    "status": "In progress",
-    "milestones": [
-      {
-        "label": "Bare-metal I²C driver (CR1/CR2/CCR/TRISE)",
-        "done": true
-      },
-      {
-        "label": "MPU-6050 read and verification on logic analyzer",
-        "done": true
-      },
-      {
-        "label": "Complementary filter for tilt angle",
-        "done": false
-      },
-      {
-        "label": "PID control loop",
-        "done": false
-      },
-      {
-        "label": "Motor driver and chassis integration",
-        "done": false
-      }
-    ],
+    "id": "ece295-pcb",
+    "type": "PCB Design · Embedded Systems",
+    "title": "Flexible Radio Transceiver — LO & Control Subsystem",
+    "desc": "Local oscillator and user/computer interface daughtercard for an HF (8–16 MHz) direct-conversion radio transceiver, designed from schematic to Gerbers in Altium Designer and hand-assembled from the fabricated board. Awarded the ECE Most Resilient Team Award — the only team out of 53 in the course to receive it.",
     "bullets": [
-      "Implemented an I²C master driver from scratch on the STM32F446RE, configuring CR1, CR2, CCR and TRISE directly and handling the full start/address/data/stop transaction sequence without a HAL.",
-      "Verified bus timing and protocol framing on a logic analyzer, decoding transactions against the MPU-6050 datasheet to confirm correct addressing and acknowledgement behaviour.",
-      "Built a bare-metal SPI master driver alongside it, working through TXE flag behaviour, overrun handling, and multi-slave chip-select architecture."
+      "Generated quadrature LO signals 90° apart to drive the transmit and receive mixers, and asserted the system-wide active-low transmit-enable line controlling the mainboard TX/RX switch.",
+      "Integrated three buses on one MCU: I²C to program the PLL frequency synthesizer, SPI to drive the OLED display, and UART over an FTDI USB bridge implementing the Yaesu CAT protocol for full PC control of frequency and TX/RX state.",
+      "Designed the front panel around operator workflow — a rotary encoder consolidating frequency tuning and step size into one control (turn to tune, press to change step), plus colour-coded buttons for favourite channels and operating mode.",
+      "Routed a dual-layer board within a fixed mechanical envelope, connector pinout, and 6 mm stack height defined by the course-wide interface control document (ICD), with copper fills, via stitching, and signal-integrity considerations on clock lines.",
+      "Brought up and debugged the assembled board on the bench, verifying bus traffic and LO phase and amplitude balance before integrating with five other teams' subsystems on a shared mainboard."
     ],
     "tags": [
       {
-        "label": "Bare-Metal C",
-        "type": "sw"
+        "label": "Altium Designer",
+        "type": "hw"
       },
       {
-        "label": "STM32F446RE",
+        "label": "PCB Design",
         "type": "hw"
+      },
+      {
+        "label": "SPI",
+        "type": "prt"
       },
       {
         "label": "I²C",
         "type": "prt"
+      },
+      {
+        "label": "UART",
+        "type": "prt"
       }
     ],
-    "images": [],
-    "github": "https://github.com/apiwichs/self-balancing-robot"
+    "images": [
+      "/assets/ece295-real-board.png",
+      "/assets/ece295-3d.png",
+      "/assets/ece295-pcb.png",
+      "/assets/ece295-schematic.png"
+    ],
+    "github": "https://github.com/apiwichs/embedded-radio-controller"
   },
   {
     "id": "hexforge-arena",
@@ -81,39 +72,6 @@
     ],
     "github": "https://github.com/apiwichs/hexforge-arena",
     "note": "Full source code withheld per UofT academic integrity policy. Demo and system overview available via GitHub."
-  },
-  {
-    "id": "ece295-pcb",
-    "type": "PCB Design · Embedded Systems",
-    "title": "Embedded Radio Controller",
-    "desc": "Full embedded system PCB designed from schematic to Gerbers in Altium Designer. Integrates a microcontroller with I²C, UART, and JTAG peripherals across a dual-layer board.",
-    "bullets": [
-      "Integrated SI5351 programmable clock generator and OLED display via I²C bus.",
-      "Exposed JTAG debug port and UART interface for firmware development and in-circuit testing.",
-      "Designed decoupling network (C1–C4), reset circuitry, and GPIO expansion headers.",
-      "Routed dual-layer board with copper fills, via stitching, and signal-integrity considerations for clock lines."
-    ],
-    "tags": [
-      {
-        "label": "Altium Designer",
-        "type": "hw"
-      },
-      {
-        "label": "UART",
-        "type": "prt"
-      },
-      {
-        "label": "I²C",
-        "type": "prt"
-      }
-    ],
-    "images": [
-      "/assets/ece295-real-board.png",
-      "/assets/ece295-3d.png",
-      "/assets/ece295-pcb.png",
-      "/assets/ece295-schematic.png"
-    ],
-    "github": "https://github.com/apiwichs/embedded-radio-controller"
   },
   {
     "id": "fpga-maze",
