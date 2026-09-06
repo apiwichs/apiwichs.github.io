@@ -1,12 +1,48 @@
 [
   {
+    "id": "vi-card-hv",
+    "type": "Analog Design · High-Voltage Hardware",
+    "title": "High-Voltage Source-Measure Front End",
+    "desc": "Extended the output range of a precision source-measure card from ±50 V to ±100 V at 200 mA. Owned the high-voltage analog chain end to end, from LTspice model through protoboard build and bring-up. Internship project at Analog Devices.",
+    "bullets": [
+      "Designed a cascode output stage so no single MOSFET absorbs the full 200 V rail-to-rail swing at 200 mA, splitting drain-source voltage and the resulting power dissipation between series devices to stay inside V_DS and thermal limits the single-device topology could not meet.",
+      "Recalculated the DC biasing network for the doubled rail, re-deriving operating points across the Class AB stage, cascode devices, and Zener/BJT bias spreader so every active device stays in its linear region across the full swing.",
+      "Verified both feedback paths at the extended range: voltage feedback reporting what the DUT actually receives at the pin, and current feedback clamping delivery at the IDAC-programmed limit so the DUT never draws past its specified current.",
+      "Verified all designs in LTspice across the full swing, automating the regression testing in Python (PyLTSpice) to sweep DC input across schematic revisions and flag divergence by percent-difference tolerance.",
+      "Traced a DC operating point convergence failure that had blocked simulation of the output stage entirely to floating nodes in the negative pull-down sub-circuit, correcting the netlist to restore a working model.",
+      "Selected the high-voltage component set: complementary MOSFET pairs, 300 V-class BJTs, precision op-amps, and decoupling capacitors re-rated from 50 V to the 250 to 500 V class.",
+      "Characterized the original ±50 V card on Credence TMT ASL1000 production ATE to establish the performance baseline, then built up the extended stage on protoboard and correlated measurements against simulation, resolving a floating MOSFET gate that produced phantom DMM readings and a V_GS mismatch against the simulated bias point."
+    ],
+    "tags": [
+      {
+        "label": "Analog Design",
+        "type": "hw"
+      },
+      {
+        "label": "LTspice",
+        "type": "sw"
+      },
+      {
+        "label": "Python",
+        "type": "sw"
+      }
+    ],
+    "images": [
+      "/assets/vi-card-top.jpg",
+      "/assets/vi-card-angle.jpg",
+      "/assets/vi-card-wiring.jpg"
+    ],
+    "feature": "internship",
+    "video": "/assets/vi-card-demo.mp4"
+  },
+  {
     "id": "ece295-pcb",
     "type": "PCB Design · Embedded Systems",
     "title": "Flexible Radio Transceiver — LO & Control Subsystem",
     "desc": "Local oscillator and user/computer interface daughtercard for an HF (8–16 MHz) direct-conversion radio transceiver, designed from schematic to Gerbers in Altium Designer and hand-assembled from the fabricated board. Awarded the ECE Most Resilient Team Award — the only team out of 53 in the course to receive it.",
     "bullets": [
       "Generated quadrature LO signals 90° apart to drive the transmit and receive mixers, and asserted the system-wide active-low transmit-enable line controlling the mainboard TX/RX switch.",
-      "Integrated three buses on one MCU: I²C to program the PLL frequency synthesizer, SPI to drive the OLED display, and UART over an FTDI USB bridge implementing the Yaesu CAT protocol for full PC control of frequency and TX/RX state.",
+      "Integrated three buses on one MCU: I²C to program the SI5351 PLL frequency synthesizer, SPI to drive the OLED display, and UART over an FTDI USB bridge implementing the Yaesu CAT protocol for full PC control of frequency and TX/RX state.",
       "Designed the front panel around operator workflow — a rotary encoder consolidating frequency tuning and step size into one control (turn to tune, press to change step), plus colour-coded buttons for favourite channels and operating mode.",
       "Routed a dual-layer board within a fixed mechanical envelope, connector pinout, and 6 mm stack height defined by the course-wide interface control document (ICD), with copper fills, via stitching, and signal-integrity considerations on clock lines.",
       "Brought up and debugged the assembled board on the bench, verifying bus traffic and LO phase and amplitude balance before integrating with five other teams' subsystems on a shared mainboard."

@@ -4,10 +4,15 @@ import Sidebar from '../components/Sidebar.astro';
 import experience from '../data/experience.json';
 import projects from '../data/projects.json';
 
-// A project is "Currently Building" when ongoing is true.
-// To move it to Completed: set "ongoing": false  (that's the only edit needed).
-const ongoingProjects   = projects.filter(p => p.ongoing === true);
-const completedProjects = projects.filter(p => p.ongoing !== true);
+// Projects split into three buckets:
+//   feature: 'internship'  -> "Internship Project"  (full-width card)
+//   ongoing: true          -> "Currently Building"  (full-width card)
+//   everything else        -> "Completed"           (grid)
+//   hidden: true           -> not rendered at all
+const visible            = projects.filter(p => p.hidden !== true);
+const internshipProjects = visible.filter(p => p.feature === 'internship');
+const ongoingProjects    = visible.filter(p => p.ongoing === true && p.feature !== 'internship');
+const completedProjects  = visible.filter(p => p.ongoing !== true && p.feature !== 'internship');
 
 const langSkills = [
   { name: 'C',               icon: '/assets/skills/c-logo.png', scale: 1.4 },
@@ -150,6 +155,9 @@ const protoSkills = [
                   <li set:html={b.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
                 ))}
               </ul>
+              {e.projectLink && (
+                <a href={e.projectLink} class="exp-proj-link">See the hardware &#8595;</a>
+              )}
             </div>
 
           </article>
@@ -166,9 +174,74 @@ const protoSkills = [
         <div class="section-rule"></div>
       </div>
 
+      {internshipProjects.length > 0 && (
+        <Fragment>
+          <h3 class="proj-subhead proj-subhead-int" id="internship-project">Internship Project</h3>
+          {internshipProjects.map(p => (
+            <article class="proj-featured feat-internship fade-up">
+              <div class="feat-media">
+                <div class="card-carousel" data-index="0">
+                  {p.images.map((src, ii) => (
+                    <img src={src} alt={`${p.title} image ${ii + 1}`}
+                         class={`carousel-img${ii === 0 ? ' active' : ''}`}
+                         onerror="this.style.display='none'" />
+                  ))}
+                  {p.images.length > 1 && (
+                    <Fragment>
+                      <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
+                      <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
+                      <div class="carousel-dots">
+                        {p.images.map((_, di) => (
+                          <span class={`carousel-dot${di === 0 ? ' active' : ''}`}></span>
+                        ))}
+                      </div>
+                    </Fragment>
+                  )}
+                </div>
+              </div>
+              <div class="feat-body">
+                <div class="feat-org">Analog Devices Internship</div>
+                <div class="card-tags feat-tags-top">
+                  {p.tags.slice(0, 3).map(t => (<span class="ctag">{t.label}</span>))}
+                </div>
+                <h3 class="card-title">{p.title}</h3>
+                <p class="card-desc">{p.desc}</p>
+                {p.bullets && (
+                  <Fragment>
+                    <div class="feat-collapse">
+                      <ul class="feat-bullets">
+                        {p.bullets.map(b => (<li>{b}</li>))}
+                      </ul>
+                    </div>
+                    <div class="feat-actions">
+                      <button class="feat-toggle" aria-expanded="false">
+                        <span class="feat-toggle-txt">Read more</span>
+                        <span class="feat-chev">&#9662;</span>
+                      </button>
+                      {p.video && (
+                        <button class="feat-video-btn">View Video</button>
+                      )}
+                    </div>
+                  </Fragment>
+                )}
+              </div>
+
+              {p.video && (
+                <div class="feat-videopanel">
+                  <video class="feat-video-el" muted loop playsinline preload="none" controls>
+                    <source src={p.video} type="video/mp4" />
+                  </video>
+                  <button class="feat-photos-btn">View Photos</button>
+                </div>
+              )}
+            </article>
+          ))}
+        </Fragment>
+      )}
+
       {ongoingProjects.length > 0 && (
         <Fragment>
-          <h3 class="proj-subhead">Currently Building</h3>
+          <h3 class="proj-subhead proj-subhead-gap">Currently Building</h3>
 
           {ongoingProjects.map(p => (
             <article class="proj-featured fade-up">
@@ -209,9 +282,16 @@ const protoSkills = [
                   ))}
                 </div>
                 <h3 class="card-title">{p.title}</h3>
-                <div class="proj-status"><span class="proj-status-dot"></span>{p.status || 'In progress'}</div>
+                {p.status && (
+                  <div class="proj-status"><span class="proj-status-dot"></span>{p.status}</div>
+                )}
                 <p class="card-desc">{p.desc}</p>
 
+                {!p.milestones && p.bullets && (
+                  <ul class="feat-bullets">
+                    {p.bullets.slice(0, 3).map(b => (<li>{b}</li>))}
+                  </ul>
+                )}
                 {p.milestones && (
                   <div class="proj-progress">
                     <div class="proj-progress-head">
@@ -250,8 +330,11 @@ const protoSkills = [
             </article>
           ))}
 
-          <h3 class="proj-subhead proj-subhead-gap">Completed</h3>
         </Fragment>
+      )}
+
+      {completedProjects.length > 0 && (
+        <h3 class="proj-subhead proj-subhead-gap">Completed</h3>
       )}
 
       <div class="projects-grid">
@@ -598,6 +681,80 @@ const protoSkills = [
   padding-top: 0.5rem;
 }
 
+/* Internship project: red accent so it ties back to the hero ADI card */
+.proj-subhead-int::before { background: #d9534f; }
+.feat-internship {
+  border-color: rgba(217,83,79,0.28);
+  border-top: 3px solid #d9534f;
+  box-shadow: 0 2px 20px rgba(217,83,79,0.06);
+}
+.feat-internship .feat-media { background: #fbf5f4; }
+.feat-org {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #1f7fc4;
+  background: rgba(31,127,196,0.1);
+  border: 1px solid rgba(31,127,196,0.3);
+  border-radius: 2px;
+  padding: 0.22rem 0.5rem;
+  margin-bottom: 0.6rem;
+}
+.feat-internship .feat-bullets li::before { background: #d9534f; }
+.feat-internship { margin-bottom: 0.5rem; }
+
+/* Video mode: panel takes over the whole card */
+.feat-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.feat-video-btn, .feat-photos-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin-top: 0.8rem; padding: 0.55rem 1.1rem;
+  font-family: var(--mono); font-size: 0.73rem; font-weight: 600;
+  letter-spacing: 0.03em; color: #2a4a30;
+  background: #f7fbf8; border: 1.5px solid #ccddd2;
+  border-radius: 4px; cursor: pointer; transition: all 0.18s;
+}
+.feat-video-btn:hover, .feat-photos-btn:hover {
+  border-color: #16a34a; color: #16a34a; transform: translateY(-1px);
+}
+.feat-videopanel { display: none; grid-column: 1 / -1; text-align: center; }
+.feat-video-el { width: 100%; display: block; background: #0a0f0b; }
+.feat-photos-btn { margin: 0.9rem 0 1.1rem; }
+.proj-featured.video-mode > .feat-media,
+.proj-featured.video-mode > .feat-body { display: none; }
+.proj-featured.video-mode .feat-videopanel { display: block; }
+
+/* Collapsible detail on the internship card */
+.feat-collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.32s ease;
+}
+.feat-collapse.open { max-height: 900px; }
+.feat-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+  padding: 0.55rem 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: #16a34a;
+  border: 1.5px solid #16a34a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.feat-toggle:hover { background: #15803d; border-color: #15803d; transform: translateY(-1px); }
+.feat-chev { display: inline-block; transition: transform 0.25s ease; font-size: 0.82rem; }
+.feat-tags-top { margin: 0 0 0.6rem; }
+.feat-toggle.open .feat-chev { transform: rotate(180deg); }
+
 /* Projects subsections */
 .proj-subhead {
   display: flex;
@@ -618,7 +775,7 @@ const protoSkills = [
   border-radius: 2px;
   flex-shrink: 0;
 }
-.proj-subhead-gap { margin-top: 3rem; }
+.proj-subhead-gap { margin-top: 2rem; }
 
 .proj-featured {
   display: grid;
@@ -639,14 +796,19 @@ const protoSkills = [
   color: #a8c4b0;
 }
 .feat-body { padding: 0.95rem 1.1rem; }
+.feat-bullets { list-style: none; margin: 0.75rem 0 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.feat-bullets li {
+  position: relative; padding-left: 0.9rem;
+  font-size: 0.76rem; line-height: 1.5; color: #4a6050;
+}
+.feat-bullets li::before {
+  content: ''; position: absolute; left: 0; top: 0.55em;
+  width: 5px; height: 5px; border-radius: 50%; background: #16a34a;
+}
 .proj-featured .card-desc {
   font-size: 0.78rem;
   line-height: 1.5;
   margin-bottom: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 .proj-featured .card-title { margin-bottom: 0.35rem; }
 .proj-featured .card-type-row { margin-bottom: 0.5rem; }
@@ -919,6 +1081,26 @@ const protoSkills = [
 /* ══ EXPERIENCE ══ */
 .experience-section { background: #fff; border-top: 1px solid #e2e8e3; }
 .exp-list { display: flex; flex-direction: column; }
+.exp-proj-link {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #0e6b34;
+  background: rgba(22,163,74,0.12);
+  border: 1px solid rgba(22,163,74,0.3);
+  border-radius: 3px;
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+.exp-proj-link:hover {
+  background: rgba(22,163,74,0.2);
+  border-color: rgba(22,163,74,0.5);
+}
+
 .exp-card {
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -1199,6 +1381,30 @@ video.carousel-img { object-fit: contain; background: #0a0f0b; }
 </style>
 
 <script>
+document.querySelectorAll('.feat-video-btn').forEach(btn => {
+  const card = btn.closest('.proj-featured');
+  const vid  = card.querySelector('.feat-video-el');
+  btn.addEventListener('click', () => {
+    card.classList.add('video-mode');
+    vid.play().catch(() => {});
+  });
+});
+document.querySelectorAll('.feat-photos-btn').forEach(btn => {
+  const card = btn.closest('.proj-featured');
+  const vid  = card.querySelector('.feat-video-el');
+  btn.addEventListener('click', () => { vid.pause(); card.classList.remove('video-mode'); });
+});
+
+document.querySelectorAll('.feat-toggle').forEach(btn => {
+  const panel = btn.closest('.feat-body').querySelector('.feat-collapse');
+  btn.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.querySelector('.feat-toggle-txt').textContent = open ? 'Show less' : 'Read more';
+  });
+});
+
 document.querySelectorAll('.card-carousel').forEach(carousel => {
   const imgs = carousel.querySelectorAll('.carousel-img');
   const dots = carousel.querySelectorAll('.carousel-dot');

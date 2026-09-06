@@ -12,7 +12,8 @@
       "Recalculated the DC biasing network for the doubled rail, re-deriving operating points across the Class AB stage, cascode devices, and Zener/BJT bias spreader so every active device stays in its linear region across the full swing, then verified both feedback paths hold at the extremes: voltage feedback reports what the DUT actually receives at the pin, and current feedback clamps delivery at the IDAC-programmed limit.",
       "Verified all designs in LTspice across the full swing, automating the regression testing in Python (PyLTSpice) to sweep DC input across schematic revisions and flag divergence by percent-difference tolerance. Traced a DC operating point convergence failure that had blocked simulation of the stage entirely to floating nodes in the negative pull-down sub-circuit.",
       "Characterized the original ±50 V card on Credence TMT ASL1000 production ATE to establish the performance baseline for the extension, then correlated protoboard measurements of the extended design against simulation, resolving a floating MOSFET gate that produced phantom DMM readings and a V_GS mismatch against the simulated bias point."
-    ]
+    ],
+    "projectLink": "#internship-project"
   },
   {
     "company": "Soundproofing of Elevator-Adjacent Rooms",
