@@ -228,9 +228,11 @@ const protoSkills = [
 
               {p.video && (
                 <div class="feat-videopanel">
-                  <video class="feat-video-el" muted loop playsinline preload="none" controls>
-                    <source src={p.video} type="video/mp4" />
-                  </video>
+                  <div class="feat-video-stage">
+                    <video class="feat-video-el" muted loop playsinline preload="none" controls>
+                      <source src={p.video} type="video/mp4" />
+                    </video>
+                  </div>
                   <button class="feat-photos-btn">View Photos</button>
                 </div>
               )}
@@ -710,18 +712,42 @@ const protoSkills = [
 .feat-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
 .feat-video-btn, .feat-photos-btn {
   display: inline-flex; align-items: center; gap: 0.4rem;
-  margin-top: 0.8rem; padding: 0.55rem 1.1rem;
-  font-family: var(--mono); font-size: 0.73rem; font-weight: 600;
-  letter-spacing: 0.03em; color: #2a4a30;
-  background: #f7fbf8; border: 1.5px solid #ccddd2;
-  border-radius: 4px; cursor: pointer; transition: all 0.18s;
+  margin-top: 0.8rem; padding: 0.4rem 0.8rem;
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #0e6b34;
+  background: rgba(22,163,74,0.12);
+  border: 1px solid rgba(22,163,74,0.3);
+  border-radius: 3px; cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
 }
 .feat-video-btn:hover, .feat-photos-btn:hover {
-  border-color: #16a34a; color: #16a34a; transform: translateY(-1px);
+  background: rgba(22,163,74,0.2);
+  border-color: rgba(22,163,74,0.5);
 }
-.feat-videopanel { display: none; grid-column: 1 / -1; text-align: center; }
-.feat-video-el { width: 100%; display: block; background: #0a0f0b; }
-.feat-photos-btn { margin: 0.9rem 0 1.1rem; }
+.feat-videopanel {
+  display: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1.6rem;
+}
+.feat-video-stage {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feat-video-el {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+.feat-photos-btn { margin: 1.1rem 0 0; }
 .proj-featured.video-mode > .feat-media,
 .proj-featured.video-mode > .feat-body { display: none; }
 .proj-featured.video-mode .feat-videopanel { display: block; }
